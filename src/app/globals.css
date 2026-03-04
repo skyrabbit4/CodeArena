@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --arena-bg: #0a0a0f;
+  --arena-card: #12121a;
+  --arena-border: #1e1e2e;
+  --arena-accent: #6c5ce7;
+  --arena-neon: #00f5d4;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1e1e2e transparent;
+}
+
+*::-webkit-scrollbar { width: 6px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background-color: #1e1e2e;
+  border-radius: 3px;
+}
+
+body {
+  background: var(--arena-bg);
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-arena-accent to-arena-neon;
+  }
+
+  .glass-card {
+    @apply bg-arena-card/80 backdrop-blur-xl border border-arena-border/50 rounded-2xl;
+  }
+
+  .neon-border {
+    @apply border border-arena-accent/30 shadow-[0_0_15px_rgba(108,92,231,0.15)];
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.3), 0 0 60px rgba(108, 92, 231, 0.1);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px rgba(0, 245, 212, 0.5), 0 0 40px rgba(0, 245, 212, 0.2);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(108, 92, 231, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108, 92, 231, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(108, 92, 231, 0.1) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
