@@ -1,0 +1,245 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  username      String    @unique
+  email         String    @unique
+  displayName   String
+  avatarUrl     String?
+  bio           String?
+  elo           Int       @default(1200)
+  rank          String    @default("Bronze")
+  wins          Int       @default(0)
+  losses        Int       @default(0)
+  draws         Int       @default(0)
+  totalBattles  Int       @default(0)
+  winStreak     Int       @default(0)
+  bestStreak    Int       @default(0)
+  problemsSolved Int      @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  battlesAsPlayer1 Battle[] @relation("Player1")
+  battlesAsPlayer2 Battle[] @relation("Player2")
+  wonBattles       Battle[] @relation("Winner")
+  submissions      Submission[]
+  teamMemberships  TeamMember[]
+  tournamentEntries TournamentEntry[]
+
+  @@index([elo(sort: Desc)])
+  @@index([rank])
+}
+
+model Problem {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  difficulty  Difficulty
+  category    String
+  examples    Json
+  testCases   Json
+  constraints String[]
+  starterCode Json
+  timeLimit   Int      @default(5000)
+  memoryLimit Int      @default(256)
+  solveCount  Int      @default(0)
+  attemptCount Int     @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  battles     Battle[]
+  submissions Submission[]
+}
+
+model Battle {
+  id          String       @id @default(cuid())
+  status      BattleStatus @default(WAITING)
+  mode        BattleMode   @default(RANKED)
+  difficulty  Difficulty   @default(MEDIUM)
+  timeLimit   Int          @default(900)
+  startedAt   DateTime?
+  endedAt     DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  problemId   String
+  problem     Problem      @relation(fields: [problemId], references: [id])
+
+  player1Id   String
+  player1     User         @relation("Player1", fields: [player1Id], references: [id])
+  player1Code String?
+  player1Time Int?
+  player1Score Int          @default(0)
+
+  player2Id   String?
+  player2     User?        @relation("Player2", fields: [player2Id], references: [id])
+  player2Code String?
+  player2Time Int?
+  player2Score Int          @default(0)
+
+  winnerId    String?
+  winner      User?        @relation("Winner", fields: [winnerId], references: [id])
+
+  eloChange   Int          @default(0)
+  submissions Submission[]
+
+  tournamentMatchId String?
+  tournamentMatch   TournamentMatch? @relation(fields: [tournamentMatchId], references: [id])
+
+  @@index([status])
+  @@index([mode])
+}
+
+model Submission {
+  id          String           @id @default(cuid())
+  code        String
+  language    String           @default("javascript")
+  status      SubmissionStatus @default(PENDING)
+  runtime     Int?
+  memory      Int?
+  testsPassed Int              @default(0)
+  testsTotal  Int              @default(0)
+  output      String?
+  error       String?
+  createdAt   DateTime         @default(now())
+
+  userId      String
+  user        User             @relation(fields: [userId], references: [id])
+  problemId   String
+  problem     Problem          @relation(fields: [problemId], references: [id])
+  battleId    String?
+  battle      Battle?          @relation(fields: [battleId], references: [id])
+}
+
+model Team {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  tag         String       @unique
+  avatarUrl   String?
+  elo         Int          @default(1200)
+  wins        Int          @default(0)
+  losses      Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  members     TeamMember[]
+  tournamentEntries TournamentEntry[]
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  role      TeamRole @default(MEMBER)
+  joinedAt  DateTime @default(now())
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  teamId    String
+  team      Team     @relation(fields: [teamId], references: [id])
+
+  @@unique([userId, teamId])
+}
+
+model Tournament {
+  id          String           @id @default(cuid())
+  name        String
+  description String?
+  type        TournamentType   @default(SINGLE_ELIMINATION)
+  status      TournamentStatus @default(UPCOMING)
+  maxPlayers  Int              @default(16)
+  prizePool   String?
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  entries     TournamentEntry[]
+  matches     TournamentMatch[]
+}
+
+model TournamentEntry {
+  id           String     @id @default(cuid())
+  seed         Int?
+  eliminated   Boolean    @default(false)
+  placement    Int?
+  registeredAt DateTime   @default(now())
+
+  userId       String?
+  user         User?      @relation(fields: [userId], references: [id])
+  teamId       String?
+  team         Team?      @relation(fields: [teamId], references: [id])
+  tournamentId String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+}
+
+model TournamentMatch {
+  id           String     @id @default(cuid())
+  round        Int
+  matchNumber  Int
+  status       BattleStatus @default(WAITING)
+
+  tournamentId String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+  battles      Battle[]
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+  EXPERT
+}
+
+enum BattleStatus {
+  WAITING
+  STARTING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum BattleMode {
+  RANKED
+  CASUAL
+  TOURNAMENT
+  PRACTICE
+}
+
+enum SubmissionStatus {
+  PENDING
+  RUNNING
+  ACCEPTED
+  WRONG_ANSWER
+  TIME_LIMIT
+  MEMORY_LIMIT
+  RUNTIME_ERROR
+  COMPILATION_ERROR
+}
+
+enum TeamRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+enum TournamentType {
+  SINGLE_ELIMINATION
+  DOUBLE_ELIMINATION
+  ROUND_ROBIN
+  SWISS
+}
+
+enum TournamentStatus {
+  UPCOMING
+  REGISTRATION
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
