@@ -8,7 +8,7 @@ import { getWinRate, formatNumber } from "@/lib/utils";
 import {
   Swords,
   Trophy,
-  Code2,
+  Brain,
   BarChart3,
   Zap,
   TrendingUp,
@@ -19,18 +19,19 @@ import {
   Users,
   Clock,
   Star,
+  HelpCircle,
 } from "lucide-react";
 
 const LIVE_BATTLES = [
-  { id: 1, p1: "NinjaCode", p2: "ByteKing", p1Elo: 1820, p2Elo: 1756, problem: "LRU Cache", difficulty: "HARD" as const, time: "8:34" },
-  { id: 2, p1: "AlgoQueen", p2: "StackMaster", p1Elo: 2105, p2Elo: 1980, problem: "Merge Intervals", difficulty: "MEDIUM" as const, time: "12:01" },
-  { id: 3, p1: "RustLord", p2: "PyWizard", p1Elo: 1445, p2Elo: 1510, problem: "Two Sum", difficulty: "EASY" as const, time: "3:22" },
+  { id: 1, p1: "NinjaCode", p2: "ByteKing", p1Elo: 1820, p2Elo: 1756, topic: "System Design", difficulty: "HARD" as const, time: "2:34" },
+  { id: 2, p1: "AlgoQueen", p2: "StackMaster", p1Elo: 2105, p2Elo: 1980, topic: "React Hooks", difficulty: "MEDIUM" as const, time: "4:01" },
+  { id: 3, p1: "RustLord", p2: "PyWizard", p1Elo: 1445, p2Elo: 1510, topic: "JavaScript Basics", difficulty: "EASY" as const, time: "1:22" },
 ];
 
 const STATS = [
   { label: "Active Players", value: "12.4K", icon: Users, color: "text-arena-neon" },
   { label: "Live Battles", value: "847", icon: Swords, color: "text-arena-neon-pink" },
-  { label: "Problems Solved Today", value: "23.1K", icon: Code2, color: "text-arena-accent-light" },
+  { label: "Questions Answered Today", value: "23.1K", icon: Brain, color: "text-arena-accent-light" },
   { label: "Tournaments This Week", value: "12", icon: Trophy, color: "text-arena-neon-yellow" },
 ];
 
@@ -58,14 +59,14 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6">
-              <span className="text-white">Code.</span>{" "}
+              <span className="text-white">Think.</span>{" "}
               <span className="text-gradient">Battle.</span>{" "}
               <span className="text-white">Conquer.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-              Real-time competitive coding battles against developers worldwide.
-              Climb the ranks, join tournaments, and prove you{"'"}re the best.
+              Real-time competitive quiz battles against developers worldwide.
+              Climb the ranks, join tournaments, and prove your knowledge is unmatched.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -81,8 +82,8 @@ export default function HomePage() {
                 href="/problems"
                 className="flex items-center gap-2 px-8 py-4 glass-card font-semibold text-gray-300 hover:text-white hover:border-arena-accent/50 transition-all"
               >
-                <Code2 className="w-5 h-5" />
-                Practice Problems
+                <Brain className="w-5 h-5" />
+                Practice Questions
               </Link>
             </div>
           </motion.div>
@@ -102,7 +103,7 @@ export default function HomePage() {
                 className="flex items-center gap-3"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
-                  <stat.icon className={`w-5 h-5 ${stat.color}`} />
+                  <stat.icon className={"w-5 h-5 " + stat.color} />
                 </div>
                 <div>
                   <p className="text-xl font-bold text-white">{stat.value}</p>
@@ -168,9 +169,9 @@ export default function HomePage() {
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-400 flex items-center gap-2">
-                  <Target className="w-4 h-4 text-arena-neon" /> Problems Solved
+                  <Target className="w-4 h-4 text-arena-neon" /> Questions Answered
                 </span>
-                <span className="font-bold text-white">{currentUser.problemsSolved}</span>
+                <span className="font-bold text-white">{currentUser.questionsAnswered}</span>
               </div>
             </div>
 
@@ -242,7 +243,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="ml-4 pl-4 border-l border-arena-border/30">
-                    <p className="text-xs text-gray-400">{battle.problem}</p>
+                    <p className="text-xs text-gray-400">{battle.topic}</p>
                     <p
                       className="text-xs font-bold"
                       style={{ color: getDifficultyColor(battle.difficulty) }}
@@ -271,8 +272,8 @@ export default function HomePage() {
           {[
             {
               icon: Swords,
-              title: "Real-Time Battles",
-              desc: "Go head-to-head with opponents in live coding duels. Same problem, same time limit — may the best coder win.",
+              title: "Real-Time Quiz Battles",
+              desc: "Go head-to-head with opponents in live quiz duels. Same questions, same time limit — may the sharpest mind win.",
               color: "from-arena-accent/20 to-purple-500/20",
             },
             {
@@ -296,7 +297,7 @@ export default function HomePage() {
               className="glass-card p-8 hover:border-arena-accent/30 transition-all group"
             >
               <div
-                className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}
+                className={"w-14 h-14 rounded-2xl bg-gradient-to-br " + feature.color + " flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"}
               >
                 <feature.icon className="w-7 h-7 text-white" />
               </div>

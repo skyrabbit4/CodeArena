@@ -7,16 +7,16 @@ import { getWinRate } from "@/lib/utils";
 import { Trophy, TrendingUp, TrendingDown, Minus, Crown, Medal } from "lucide-react";
 
 const LEADERBOARD: (User & { change: number })[] = [
-  { id: "1", username: "AlgoGod", displayName: "Algo God", elo: 2456, rank: "Grandmaster", wins: 342, losses: 45, draws: 12, totalBattles: 399, winStreak: 18, bestStreak: 25, problemsSolved: 512, change: 15 },
-  { id: "2", username: "ByteQueen", displayName: "Byte Queen", elo: 2312, rank: "Grandmaster", wins: 298, losses: 67, draws: 8, totalBattles: 373, winStreak: 5, bestStreak: 20, problemsSolved: 445, change: 22 },
-  { id: "3", username: "NeuralNinja", displayName: "Neural Ninja", elo: 2198, rank: "Master", wins: 256, losses: 89, draws: 15, totalBattles: 360, winStreak: 12, bestStreak: 16, problemsSolved: 389, change: -8 },
-  { id: "4", username: "StackSurfer", displayName: "Stack Surfer", elo: 2089, rank: "Master", wins: 234, losses: 98, draws: 10, totalBattles: 342, winStreak: 3, bestStreak: 14, problemsSolved: 367, change: 5 },
-  { id: "5", username: "RecursionKing", displayName: "Recursion King", elo: 1987, rank: "Diamond", wins: 198, losses: 112, draws: 7, totalBattles: 317, winStreak: 8, bestStreak: 13, problemsSolved: 312, change: 0 },
-  { id: "6", username: "HashMapHero", displayName: "HashMap Hero", elo: 1876, rank: "Diamond", wins: 178, losses: 95, draws: 14, totalBattles: 287, winStreak: 2, bestStreak: 11, problemsSolved: 289, change: -12 },
-  { id: "7", username: "TreeTraverser", displayName: "Tree Traverser", elo: 1756, rank: "Platinum", wins: 156, losses: 104, draws: 9, totalBattles: 269, winStreak: 6, bestStreak: 10, problemsSolved: 256, change: 18 },
-  { id: "8", username: "DPMaster", displayName: "DP Master", elo: 1689, rank: "Platinum", wins: 145, losses: 110, draws: 11, totalBattles: 266, winStreak: 4, bestStreak: 9, problemsSolved: 234, change: 7 },
-  { id: "9", username: "GraphWizard", displayName: "Graph Wizard", elo: 1623, rank: "Platinum", wins: 134, losses: 98, draws: 6, totalBattles: 238, winStreak: 1, bestStreak: 8, problemsSolved: 210, change: -5 },
-  { id: "10", username: "BinaryBeast", displayName: "Binary Beast", elo: 1567, rank: "Gold", wins: 123, losses: 89, draws: 13, totalBattles: 225, winStreak: 9, bestStreak: 15, problemsSolved: 198, change: 10 },
+  { id: "1", username: "AlgoGod", displayName: "Algo God", elo: 2456, rank: "Grandmaster", wins: 342, losses: 45, draws: 12, totalBattles: 399, winStreak: 18, bestStreak: 25, questionsAnswered: 512, change: 15 },
+  { id: "2", username: "ByteQueen", displayName: "Byte Queen", elo: 2312, rank: "Grandmaster", wins: 298, losses: 67, draws: 8, totalBattles: 373, winStreak: 5, bestStreak: 20, questionsAnswered: 445, change: 22 },
+  { id: "3", username: "NeuralNinja", displayName: "Neural Ninja", elo: 2198, rank: "Master", wins: 256, losses: 89, draws: 15, totalBattles: 360, winStreak: 12, bestStreak: 16, questionsAnswered: 389, change: -8 },
+  { id: "4", username: "StackSurfer", displayName: "Stack Surfer", elo: 2089, rank: "Master", wins: 234, losses: 98, draws: 10, totalBattles: 342, winStreak: 3, bestStreak: 14, questionsAnswered: 367, change: 5 },
+  { id: "5", username: "RecursionKing", displayName: "Recursion King", elo: 1987, rank: "Diamond", wins: 198, losses: 112, draws: 7, totalBattles: 317, winStreak: 8, bestStreak: 13, questionsAnswered: 312, change: 0 },
+  { id: "6", username: "HashMapHero", displayName: "HashMap Hero", elo: 1876, rank: "Diamond", wins: 178, losses: 95, draws: 14, totalBattles: 287, winStreak: 2, bestStreak: 11, questionsAnswered: 289, change: -12 },
+  { id: "7", username: "TreeTraverser", displayName: "Tree Traverser", elo: 1756, rank: "Platinum", wins: 156, losses: 104, draws: 9, totalBattles: 269, winStreak: 6, bestStreak: 10, questionsAnswered: 256, change: 18 },
+  { id: "8", username: "DPMaster", displayName: "DP Master", elo: 1689, rank: "Platinum", wins: 145, losses: 110, draws: 11, totalBattles: 266, winStreak: 4, bestStreak: 9, questionsAnswered: 234, change: 7 },
+  { id: "9", username: "GraphWizard", displayName: "Graph Wizard", elo: 1623, rank: "Platinum", wins: 134, losses: 98, draws: 6, totalBattles: 238, winStreak: 1, bestStreak: 8, questionsAnswered: 210, change: -5 },
+  { id: "10", username: "BinaryBeast", displayName: "Binary Beast", elo: 1567, rank: "Gold", wins: 123, losses: 89, draws: 13, totalBattles: 225, winStreak: 9, bestStreak: 15, questionsAnswered: 198, change: 10 },
 ];
 
 function getPositionIcon(pos: number) {

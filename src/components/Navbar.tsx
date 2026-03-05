@@ -8,7 +8,7 @@ import { useGameStore } from "@/store/game-store";
 import {
   Swords,
   Trophy,
-  Code2,
+  Brain,
   BarChart3,
   Users,
   User,
@@ -18,7 +18,7 @@ import {
 const NAV_ITEMS = [
   { href: "/", label: "Home", icon: Zap },
   { href: "/arena", label: "Arena", icon: Swords },
-  { href: "/problems", label: "Problems", icon: Code2 },
+  { href: "/problems", label: "Questions", icon: Brain },
   { href: "/leaderboard", label: "Leaderboard", icon: BarChart3 },
   { href: "/tournaments", label: "Tournaments", icon: Trophy },
 ];

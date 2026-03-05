@@ -11,7 +11,7 @@ import {
   Flame,
   Star,
   TrendingUp,
-  Code2,
+  Brain,
   Calendar,
   Award,
   Shield,
@@ -29,7 +29,7 @@ const RECENT_MATCHES = [
 const ACHIEVEMENTS = [
   { name: "First Blood", desc: "Win your first battle", icon: Swords, unlocked: true },
   { name: "On Fire", desc: "5 win streak", icon: Flame, unlocked: true },
-  { name: "Problem Solver", desc: "Solve 100 problems", icon: Code2, unlocked: true },
+  { name: "Quiz Master", desc: "Answer 100 questions", icon: Brain, unlocked: true },
   { name: "Speed Demon", desc: "Solve under 2 minutes", icon: Zap, unlocked: true },
   { name: "Unstoppable", desc: "10 win streak", icon: Star, unlocked: true },
   { name: "Diamond Hands", desc: "Reach Diamond rank", icon: Shield, unlocked: false },
@@ -134,7 +134,7 @@ export default function ProfilePage() {
             <div className="space-y-4">
               {[
                 { label: "Total Battles", value: currentUser.totalBattles, icon: Swords },
-                { label: "Problems Solved", value: currentUser.problemsSolved, icon: Target },
+                { label: "Questions Answered", value: currentUser.questionsAnswered, icon: Target },
                 { label: "Current Streak", value: `${currentUser.winStreak} 🔥`, icon: Flame },
                 { label: "Best Streak", value: currentUser.bestStreak, icon: Star },
                 { label: "Draws", value: currentUser.draws, icon: Shield },

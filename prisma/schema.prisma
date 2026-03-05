@@ -22,7 +22,7 @@ model User {
   totalBattles  Int       @default(0)
   winStreak     Int       @default(0)
   bestStreak    Int       @default(0)
-  problemsSolved Int      @default(0)
+  questionsAnswered Int      @default(0)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -45,11 +45,11 @@ model Problem {
   difficulty  Difficulty
   category    String
   examples    Json
-  testCases   Json
+  options     Json
   constraints String[]
-  starterCode Json
-  timeLimit   Int      @default(5000)
-  memoryLimit Int      @default(256)
+  correctAnswer Int      @default(0)
+  explanation  String?
+  
   solveCount  Int      @default(0)
   attemptCount Int     @default(0)
   createdAt   DateTime @default(now())
@@ -75,13 +75,11 @@ model Battle {
 
   player1Id   String
   player1     User         @relation("Player1", fields: [player1Id], references: [id])
-  player1Code String?
   player1Time Int?
   player1Score Int          @default(0)
 
   player2Id   String?
   player2     User?        @relation("Player2", fields: [player2Id], references: [id])
-  player2Code String?
   player2Time Int?
   player2Score Int          @default(0)
 
@@ -100,11 +98,11 @@ model Battle {
 
 model Submission {
   id          String           @id @default(cuid())
-  code        String
-  language    String           @default("javascript")
+  selectedAnswer Int
+  isCorrect   Boolean          @default(false)
   status      SubmissionStatus @default(PENDING)
-  runtime     Int?
-  memory      Int?
+
+
   testsPassed Int              @default(0)
   testsTotal  Int              @default(0)
   output      String?
@@ -214,13 +212,10 @@ enum BattleMode {
 
 enum SubmissionStatus {
   PENDING
-  RUNNING
-  ACCEPTED
-  WRONG_ANSWER
-  TIME_LIMIT
-  MEMORY_LIMIT
-  RUNTIME_ERROR
-  COMPILATION_ERROR
+  CORRECT
+  WRONG
+  SKIPPED
+  TIMED_OUT
 }
 
 enum TeamRole {

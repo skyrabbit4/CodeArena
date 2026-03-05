@@ -1,7 +1,6 @@
 export type Difficulty = "EASY" | "MEDIUM" | "HARD" | "EXPERT";
 export type BattleStatus = "WAITING" | "STARTING" | "IN_PROGRESS" | "COMPLETED" | "CANCELLED";
 export type BattleMode = "RANKED" | "CASUAL" | "TOURNAMENT" | "PRACTICE";
-export type SubmissionStatus = "PENDING" | "RUNNING" | "ACCEPTED" | "WRONG_ANSWER" | "TIME_LIMIT" | "MEMORY_LIMIT" | "RUNTIME_ERROR" | "COMPILATION_ERROR";
 
 export interface User {
   id: string;
@@ -16,36 +15,22 @@ export interface User {
   totalBattles: number;
   winStreak: number;
   bestStreak: number;
-  problemsSolved: number;
+  questionsAnswered: number;
 }
 
-export interface Problem {
+export interface Question {
   id: string;
   title: string;
   slug: string;
-  description: string;
+  question: string;
+  codeSnippet?: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
   difficulty: Difficulty;
   category: string;
-  examples: Example[];
-  testCases: TestCase[];
-  constraints: string[];
-  starterCode: Record<string, string>;
-  timeLimit: number;
-  memoryLimit: number;
   solveCount: number;
   attemptCount: number;
-}
-
-export interface Example {
-  input: string;
-  output: string;
-  explanation?: string;
-}
-
-export interface TestCase {
-  input: string;
-  expectedOutput: string;
-  isHidden?: boolean;
 }
 
 export interface Battle {
@@ -54,7 +39,7 @@ export interface Battle {
   mode: BattleMode;
   difficulty: Difficulty;
   timeLimit: number;
-  problem: Problem;
+  questions: Question[];
   player1: User;
   player2?: User;
   player1Score: number;
@@ -63,19 +48,6 @@ export interface Battle {
   eloChange: number;
   startedAt?: string;
   endedAt?: string;
-}
-
-export interface Submission {
-  id: string;
-  code: string;
-  language: string;
-  status: SubmissionStatus;
-  runtime?: number;
-  memory?: number;
-  testsPassed: number;
-  testsTotal: number;
-  output?: string;
-  error?: string;
 }
 
 export interface Tournament {
