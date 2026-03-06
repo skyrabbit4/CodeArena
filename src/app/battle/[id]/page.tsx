@@ -1,52 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGameStore } from "@/store/game-store";
 import { cn } from "@/lib/utils";
 import { formatTime } from "@/lib/utils";
-import { getRankColor, getDifficultyColor } from "@/types";
 import {
   Clock,
   CheckCircle2,
   XCircle,
   Trophy,
-  ArrowLeft,
   ArrowRight,
   Zap,
   Lightbulb,
-  BarChart3,
   Send,
 } from "lucide-react";
 
-const OPTION_LABELS = ["A", "B", "C", "D"];
+const LABELS = ["A", "B", "C", "D"];
 
 export default function BattlePage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const {
-    currentBattle,
-    currentUser,
-    battleTimer,
-    isBattleActive,
-    currentQuestionIndex,
-    selectedAnswer,
-    answerResults,
-    showExplanation,
-    isAnswerLocked,
-    opponentProgress,
-    selectAnswer,
-    submitAnswer,
-    nextQuestion,
-    tickTimer,
-    endBattle,
+    currentBattle, currentUser, battleTimer, currentQuestionIndex,
+    selectedAnswer, answerResults, showExplanation, isAnswerLocked,
+    opponentProgress, selectAnswer, submitAnswer, nextQuestion,
+    tickTimer, endBattle,
   } = useGameStore();
 
   useEffect(() => {
-    if (!currentBattle) {
-      router.push("/arena");
-      return;
-    }
+    if (!currentBattle) { router.push("/arena"); return; }
     const interval = setInterval(tickTimer, 1000);
     return () => clearInterval(interval);
   }, [currentBattle, tickTimer, router]);
@@ -54,178 +37,115 @@ export default function BattlePage({ params }: { params: { id: string } }) {
   if (!currentBattle) return null;
 
   const { questions, player1, player2 } = currentBattle;
-  const currentQuestion = questions[currentQuestionIndex];
-  const isCompleted = currentBattle.status === "COMPLETED";
-  const isWinner = currentBattle.winnerId === currentUser.id;
-  const isDraw = currentBattle.winnerId === "";
+  const q = questions[currentQuestionIndex];
+  const done = currentBattle.status === "COMPLETED";
+  const won = currentBattle.winnerId === currentUser.id;
+  const draw = currentBattle.winnerId === "";
+  const total = questions.length;
+  const correct = answerResults.filter((r) => r.isCorrect).length;
+  const isLast = currentQuestionIndex >= total - 1;
   const timerDanger = battleTimer < 30;
-  const timerWarning = battleTimer < 60;
-  const totalQuestions = questions.length;
-  const correctCount = answerResults.filter((r) => r.isCorrect).length;
-  const isLastQuestion = currentQuestionIndex >= totalQuestions - 1;
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col">
-      {/* Battle Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-arena-card/60 backdrop-blur-2xl border-b border-white/[0.04]">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => router.push("/arena")}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-
-          {/* Player 1 */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-xs font-bold text-white">
+    <div className="min-h-screen flex flex-col bg-bg">
+      {/* Top bar — compact game HUD */}
+      <div className="flex items-center justify-between px-4 py-2.5 bg-card border-b border-white/[0.04]">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center text-[10px] font-bold text-purple-300">
               {player1.username[0]}
             </div>
-            <div>
-              <p className="text-sm font-semibold text-white">{player1.username}</p>
-              <p className="text-xs" style={{ color: getRankColor(player1.rank) }}>
-                {currentBattle.player1Score}/{totalQuestions}
-              </p>
-            </div>
+            <span className="text-xs font-bold text-white">{currentBattle.player1Score}</span>
           </div>
-
-          <span className="text-violet-400 font-bold text-sm px-3">VS</span>
-
-          {/* Player 2 */}
+          <span className="text-[10px] text-gray-600 font-bold">VS</span>
           {player2 && (
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-xs font-bold text-white">
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-bold text-white">{currentBattle.player2Score}</span>
+              <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center text-[10px] font-bold text-red-300">
                 {player2.username[0]}
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-white">{player2.username}</p>
-                <p className="text-xs" style={{ color: getRankColor(player2.rank) }}>
-                  {currentBattle.player2Score}/{totalQuestions}
-                </p>
               </div>
             </div>
           )}
         </div>
 
-        {/* Timer */}
         <div className={cn(
-          "flex items-center gap-2 px-4 py-1.5 rounded-xl font-mono text-lg font-bold",
-          timerDanger ? "bg-red-500/20 text-red-400 animate-pulse" :
-          timerWarning ? "bg-arena-neon-yellow/10 text-arena-neon-yellow" :
-          "bg-white/5 text-white"
+          "flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono font-bold",
+          timerDanger ? "bg-red-500/15 text-red-400 animate-pulse" : "bg-white/[0.04] text-gray-400"
         )}>
-          <Clock className="w-4 h-4" />
+          <Clock className="w-3 h-3" />
           {formatTime(battleTimer)}
         </div>
 
-        {/* Progress */}
-        <div className="flex items-center gap-3">
-          <div className="text-sm text-gray-400">
-            Q <span className="text-white font-bold">{currentQuestionIndex + 1}</span>/{totalQuestions}
-          </div>
-          <div
-            className="px-3 py-1 rounded-lg text-xs font-bold"
-            style={{
-              backgroundColor: getDifficultyColor(currentQuestion.difficulty) + "20",
-              color: getDifficultyColor(currentQuestion.difficulty),
-            }}
-          >
-            {currentQuestion.difficulty}
-          </div>
-        </div>
+        <span className="text-xs text-gray-500">
+          <span className="text-white font-bold">{currentQuestionIndex + 1}</span>/{total}
+        </span>
       </div>
 
-      {/* Question Progress Bar */}
-      <div className="flex gap-1.5 px-4 py-2 bg-arena-card/30">
+      {/* Progress dots */}
+      <div className="flex gap-1 px-4 py-2">
         {questions.map((_, i) => {
-          const result = answerResults[i];
+          const r = answerResults[i];
           return (
             <div
               key={i}
               className={cn(
-                "flex-1 h-2 rounded-full transition-all",
-                i === currentQuestionIndex
-                  ? "bg-violet-500 animate-pulse"
-                  : result
-                  ? result.isCorrect
-                    ? "bg-arena-success"
-                    : "bg-arena-danger"
-                  : "bg-white/10"
+                "flex-1 h-1.5 rounded-full transition-all",
+                i === currentQuestionIndex ? "bg-purple-500" :
+                r ? (r.isCorrect ? "bg-green-500" : "bg-red-500") : "bg-white/[0.06]"
               )}
             />
           );
         })}
       </div>
 
-      {/* Battle Complete Overlay */}
+      {/* Battle complete overlay */}
       <AnimatePresence>
-        {isCompleted && (
+        {done && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center px-4"
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", damping: 15 }}
-              className="glass-card p-10 text-center max-w-md mx-4"
+              transition={{ type: "spring", damping: 20 }}
+              className="game-card p-8 text-center max-w-sm w-full"
             >
-              {isWinner ? (
-                <>
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-arena-neon-yellow to-orange-500 flex items-center justify-center">
-                    <Trophy className="w-10 h-10 text-white" />
-                  </div>
-                  <h2 className="text-3xl font-black text-white mb-2">Victory! 🎉</h2>
-                  <p className="text-arena-success text-lg font-bold mb-1">
-                    +{currentBattle.eloChange} ELO
-                  </p>
-                </>
-              ) : isDraw ? (
-                <>
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-500 to-gray-600 flex items-center justify-center">
-                    <BarChart3 className="w-10 h-10 text-white" />
-                  </div>
-                  <h2 className="text-3xl font-black text-white mb-2">Draw!</h2>
-                  <p className="text-gray-400 text-lg mb-1">0 ELO</p>
-                </>
-              ) : (
-                <>
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
-                    <XCircle className="w-10 h-10 text-white" />
-                  </div>
-                  <h2 className="text-3xl font-black text-white mb-2">Defeat</h2>
-                  <p className="text-arena-danger text-lg font-bold mb-1">
-                    {currentBattle.eloChange} ELO
-                  </p>
-                </>
-              )}
+              <div className="text-5xl mb-3">
+                {won ? "🏆" : draw ? "🤝" : "💀"}
+              </div>
+              <h2 className="text-2xl font-black text-white mb-1">
+                {won ? "Victory!" : draw ? "Draw" : "Defeated"}
+              </h2>
+              <p className={cn(
+                "text-lg font-bold mb-4",
+                won ? "text-green-400" : draw ? "text-gray-400" : "text-red-400"
+              )}>
+                {won ? `+${currentBattle.eloChange}` : draw ? "0" : currentBattle.eloChange} ELO
+              </p>
 
-              {/* Score Summary */}
-              <div className="flex justify-center gap-6 my-4 py-3 border-y border-arena-border/30">
+              <div className="flex justify-center gap-8 mb-6 py-3 border-y border-white/[0.06]">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-white">{currentBattle.player1Score}</p>
-                  <p className="text-xs text-gray-400">You</p>
+                  <p className="text-xl font-bold text-white">{currentBattle.player1Score}</p>
+                  <p className="text-[10px] text-gray-500">You</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-white">{currentBattle.player2Score}</p>
-                  <p className="text-xs text-gray-400">{player2?.username}</p>
+                  <p className="text-xl font-bold text-white">{currentBattle.player2Score}</p>
+                  <p className="text-[10px] text-gray-500">{player2?.username}</p>
                 </div>
               </div>
 
-              <p className="text-gray-400 text-sm mb-6">
-                {correctCount}/{totalQuestions} correct answers
-              </p>
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 <button
                   onClick={() => router.push("/arena")}
-                  className="flex-1 py-3 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl font-bold text-white"
+                  className="flex-1 game-btn-primary py-3"
                 >
                   Play Again
                 </button>
                 <button
                   onClick={() => router.push("/")}
-                  className="flex-1 py-3 bg-white/[0.04] rounded-xl font-semibold text-gray-300"
+                  className="flex-1 game-btn-ghost py-3"
                 >
                   Home
                 </button>
@@ -235,190 +155,125 @@ export default function BattlePage({ params }: { params: { id: string } }) {
         )}
       </AnimatePresence>
 
-      {/* Main Battle Area */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Question Panel */}
-        <div className="w-[45%] border-r border-white/[0.04] overflow-y-auto p-8">
-          <motion.div
-            key={currentQuestionIndex}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <span
-                className="px-2 py-0.5 rounded text-xs font-bold"
-                style={{
-                  backgroundColor: getDifficultyColor(currentQuestion.difficulty) + "20",
-                  color: getDifficultyColor(currentQuestion.difficulty),
-                }}
-              >
-                {currentQuestion.difficulty}
-              </span>
-              <span className="text-xs text-gray-500">{currentQuestion.category}</span>
+      {/* Question + Answers — single column, scrollable */}
+      <div className="flex-1 overflow-y-auto px-4 py-6 max-w-2xl mx-auto w-full">
+        <motion.div
+          key={currentQuestionIndex}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          {/* Question */}
+          <h2 className="text-lg font-bold text-white mb-2">{q.title}</h2>
+          <p className="text-sm text-gray-400 leading-relaxed mb-4 whitespace-pre-wrap">{q.question}</p>
+
+          {q.codeSnippet && (
+            <div className="rounded-2xl bg-[#0d0d15] border border-white/[0.06] p-4 mb-6 font-mono text-sm overflow-x-auto">
+              <pre className="text-gray-300"><code>{q.codeSnippet}</code></pre>
             </div>
+          )}
 
-            <h2 className="text-xl font-bold text-white mb-4">{currentQuestion.title}</h2>
+          {/* Options */}
+          <div className="space-y-2.5 mb-6">
+            {q.options.map((opt, i) => {
+              const sel = selectedAnswer === i;
+              const isCorrect = i === q.correctAnswer;
+              const showGreen = isAnswerLocked && isCorrect;
+              const showRed = isAnswerLocked && sel && !isCorrect;
 
-            <div className="text-gray-300 text-sm leading-relaxed whitespace-pre-wrap mb-6">
-              {currentQuestion.question}
-            </div>
-
-            {/* Code Snippet */}
-            {currentQuestion.codeSnippet && (
-              <div className="rounded-xl bg-[#0d0d15] border border-white/[0.06] p-4 mb-6 font-mono text-sm">
-                <pre className="text-gray-300 overflow-x-auto">
-                  <code>{currentQuestion.codeSnippet}</code>
-                </pre>
-              </div>
-            )}
-
-            {/* Explanation (shown after answering) */}
-            <AnimatePresence>
-              {showExplanation && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="rounded-xl bg-violet-500/5 border border-violet-500/15 p-4 mt-4"
+              return (
+                <motion.button
+                  key={i}
+                  whileTap={!isAnswerLocked ? { scale: 0.98 } : {}}
+                  onClick={() => selectAnswer(i)}
+                  disabled={isAnswerLocked}
+                  className={cn(
+                    "w-full flex items-center gap-3 p-4 rounded-2xl border-2 text-left transition-all",
+                    !isAnswerLocked && sel ? "border-purple-500 bg-purple-500/10" :
+                    !isAnswerLocked && !sel ? "border-white/[0.04] bg-white/[0.02] hover:border-purple-500/30" :
+                    showGreen ? "border-green-500 bg-green-500/10" :
+                    showRed ? "border-red-500 bg-red-500/10" :
+                    "border-white/[0.02] bg-white/[0.01] opacity-40"
+                  )}
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    <Lightbulb className="w-4 h-4 text-arena-neon-yellow" />
-                    <span className="text-sm font-bold text-arena-neon-yellow">Explanation</span>
+                  <div className={cn(
+                    "w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shrink-0",
+                    !isAnswerLocked && sel ? "bg-purple-500 text-white" :
+                    !isAnswerLocked ? "bg-white/[0.04] text-gray-500" :
+                    showGreen ? "bg-green-500 text-white" :
+                    showRed ? "bg-red-500 text-white" :
+                    "bg-white/[0.03] text-gray-700"
+                  )}>
+                    {isAnswerLocked && showGreen ? <CheckCircle2 className="w-4 h-4" /> :
+                     isAnswerLocked && showRed ? <XCircle className="w-4 h-4" /> :
+                     LABELS[i]}
                   </div>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    {currentQuestion.explanation}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-
-        {/* Answer Panel */}
-        <div className="flex-1 flex flex-col p-8">
-          <motion.div
-            key={currentQuestionIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-            className="flex-1"
-          >
-            <h3 className="text-sm font-bold text-gray-400 mb-6 uppercase tracking-wider">
-              Choose your answer
-            </h3>
-
-            {/* Options */}
-            <div className="space-y-3">
-              {currentQuestion.options.map((option, i) => {
-                const isSelected = selectedAnswer === i;
-                const isCorrect = i === currentQuestion.correctAnswer;
-                const wasSelected = isAnswerLocked && selectedAnswer === i;
-                const showCorrect = isAnswerLocked && isCorrect;
-                const showWrong = isAnswerLocked && wasSelected && !isCorrect;
-
-                return (
-                  <motion.button
-                    key={i}
-                    whileHover={!isAnswerLocked ? { scale: 1.01 } : {}}
-                    whileTap={!isAnswerLocked ? { scale: 0.99 } : {}}
-                    onClick={() => selectAnswer(i)}
-                    disabled={isAnswerLocked}
-                    className={cn(
-                      "w-full flex items-center gap-4 p-4 rounded-xl border-2 text-left transition-all",
-                      !isAnswerLocked && isSelected
-                        ? "border-arena-accent bg-arena-accent/10"
-                        : !isAnswerLocked && !isSelected
-                        ? "border-white/[0.06] bg-white/[0.02] hover:border-violet-500/30 hover:bg-white/[0.04]"
-                        : showCorrect
-                        ? "border-arena-success bg-arena-success/10"
-                        : showWrong
-                        ? "border-arena-danger bg-arena-danger/10"
-                        : "border-white/[0.03] bg-white/[0.01] opacity-50"
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        "w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm shrink-0",
-                        !isAnswerLocked && isSelected
-                          ? "bg-arena-accent text-white"
-                          : !isAnswerLocked
-                          ? "bg-white/5 text-gray-400"
-                          : showCorrect
-                          ? "bg-arena-success text-white"
-                          : showWrong
-                          ? "bg-arena-danger text-white"
-                          : "bg-white/5 text-gray-600"
-                      )}
-                    >
-                      {isAnswerLocked && showCorrect ? (
-                        <CheckCircle2 className="w-5 h-5" />
-                      ) : isAnswerLocked && showWrong ? (
-                        <XCircle className="w-5 h-5" />
-                      ) : (
-                        OPTION_LABELS[i]
-                      )}
-                    </div>
-                    <span
-                      className={cn(
-                        "text-sm font-medium",
-                        showCorrect
-                          ? "text-arena-success"
-                          : showWrong
-                          ? "text-arena-danger"
-                          : isSelected && !isAnswerLocked
-                          ? "text-white"
-                          : "text-gray-300"
-                      )}
-                    >
-                      {option}
-                    </span>
-                  </motion.button>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/[0.04]">
-            {/* Score */}
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1.5 text-sm">
-                <CheckCircle2 className="w-4 h-4 text-arena-success" />
-                <span className="text-arena-success font-bold">{correctCount}</span>
-                <span className="text-gray-500">correct</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-sm">
-                <Zap className="w-4 h-4 text-arena-neon-yellow" />
-                <span className="text-gray-400">Opponent at Q{opponentProgress + 1}</span>
-              </div>
-            </div>
-
-            {/* Submit / Next */}
-            {!isAnswerLocked ? (
-              <button
-                onClick={submitAnswer}
-                disabled={selectedAnswer === null}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl font-bold text-white hover:shadow-[0_0_20px_rgba(124,58,237,0.25)] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                <Send className="w-4 h-4" />
-                Lock Answer
-              </button>
-            ) : !isLastQuestion ? (
-              <button
-                onClick={nextQuestion}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl font-bold text-white hover:shadow-[0_0_20px_rgba(6,214,160,0.25)] transition-all"
-              >
-                Next Question
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            ) : (
-              <div className="text-sm text-gray-400 animate-pulse">
-                Calculating results...
-              </div>
-            )}
+                  <span className={cn(
+                    "text-sm",
+                    showGreen ? "text-green-400 font-medium" :
+                    showRed ? "text-red-400 font-medium" :
+                    sel && !isAnswerLocked ? "text-white font-medium" :
+                    "text-gray-400"
+                  )}>
+                    {opt}
+                  </span>
+                </motion.button>
+              );
+            })}
           </div>
+
+          {/* Explanation */}
+          <AnimatePresence>
+            {showExplanation && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                className="rounded-2xl bg-purple-500/5 border border-purple-500/10 p-4 mb-6"
+              >
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Lightbulb className="w-3.5 h-3.5 text-yellow-500" />
+                  <span className="text-xs font-bold text-yellow-500">Explanation</span>
+                </div>
+                <p className="text-sm text-gray-400 leading-relaxed">{q.explanation}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      {/* Bottom action bar */}
+      <div className="px-4 py-3 border-t border-white/[0.04] bg-card flex items-center justify-between max-w-2xl mx-auto w-full">
+        <div className="flex items-center gap-3 text-xs text-gray-500">
+          <span className="flex items-center gap-1">
+            <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
+            <span className="text-green-400 font-bold">{correct}</span> correct
+          </span>
+          <span className="flex items-center gap-1">
+            <Zap className="w-3.5 h-3.5 text-yellow-500" />
+            Opponent Q{opponentProgress + 1}
+          </span>
         </div>
+
+        {!isAnswerLocked ? (
+          <button
+            onClick={submitAnswer}
+            disabled={selectedAnswer === null}
+            className="game-btn-primary py-2.5 px-5 text-sm flex items-center gap-1.5 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+          >
+            <Send className="w-3.5 h-3.5" />
+            Lock In
+          </button>
+        ) : !isLast ? (
+          <button
+            onClick={nextQuestion}
+            className="game-btn py-2.5 px-5 text-sm bg-green-600 shadow-[0_0_20px_rgba(34,197,94,0.2)] hover:shadow-[0_0_30px_rgba(34,197,94,0.35)] flex items-center gap-1.5"
+          >
+            Next
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        ) : (
+          <span className="text-xs text-gray-500 animate-pulse">Finishing...</span>
+        )}
       </div>
     </div>
   );
