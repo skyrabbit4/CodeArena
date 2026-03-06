@@ -5,16 +5,14 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_1",
     title: "JavaScript Closures",
     slug: "javascript-closures",
-    question: "What will the following code output?\n\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1000);\n}",
-    codeSnippet: "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1000);\n}",
-    options: [
-      "0 1 2",
-      "3 3 3",
-      "undefined undefined undefined",
-      "0 0 0"
-    ],
+    question:
+      "What will the following code output?\n\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1000);\n}",
+    codeSnippet:
+      "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1000);\n}",
+    options: ["0 1 2", "3 3 3", "undefined undefined undefined", "0 0 0"],
     correctAnswer: 1,
-    explanation: "Because 'var' is function-scoped, the closure captures the same variable 'i'. By the time the setTimeout callbacks run, the loop has completed and i equals 3. All three callbacks print 3.",
+    explanation:
+      "Because 'var' is function-scoped, the closure captures the same variable 'i'. By the time the setTimeout callbacks run, the loop has completed and i equals 3. All three callbacks print 3.",
     difficulty: "EASY",
     category: "JavaScript",
     solveCount: 18420,
@@ -24,16 +22,13 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_2",
     title: "Python List Mutation",
     slug: "python-list-mutation",
-    question: "What is the output of this Python code?\n\na = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)",
+    question:
+      "What is the output of this Python code?\n\na = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)",
     codeSnippet: "a = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)",
-    options: [
-      "[1, 2, 3]",
-      "[1, 2, 3, 4]",
-      "[4, 1, 2, 3]",
-      "Error"
-    ],
+    options: ["[1, 2, 3]", "[1, 2, 3, 4]", "[4, 1, 2, 3]", "Error"],
     correctAnswer: 1,
-    explanation: "In Python, 'b = a' doesn't copy the list — it creates a reference to the same list object. So when b.append(4) is called, it modifies the same list that 'a' points to. Both a and b reference [1, 2, 3, 4].",
+    explanation:
+      "In Python, 'b = a' doesn't copy the list — it creates a reference to the same list object. So when b.append(4) is called, it modifies the same list that 'a' points to. Both a and b reference [1, 2, 3, 4].",
     difficulty: "EASY",
     category: "Python",
     solveCount: 21300,
@@ -43,15 +38,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_3",
     title: "HTTP Status Codes",
     slug: "http-status-codes",
-    question: "Which HTTP status code indicates that the server understood the request but refuses to authorize it?",
+    question:
+      "Which HTTP status code indicates that the server understood the request but refuses to authorize it?",
     options: [
       "401 Unauthorized",
       "403 Forbidden",
       "404 Not Found",
-      "405 Method Not Allowed"
+      "405 Method Not Allowed",
     ],
     correctAnswer: 1,
-    explanation: "403 Forbidden means the server understood the request but refuses to authorize it. 401 means the client must authenticate itself. The key difference: 401 = 'who are you?', 403 = 'I know who you are, but you can't do this.'",
+    explanation:
+      "403 Forbidden means the server understood the request but refuses to authorize it. 401 means the client must authenticate itself. The key difference: 401 = 'who are you?', 403 = 'I know who you are, but you can't do this.'",
     difficulty: "EASY",
     category: "Web Development",
     solveCount: 25100,
@@ -61,15 +58,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_4",
     title: "Big O Complexity",
     slug: "big-o-complexity",
-    question: "What is the time complexity of searching for an element in a balanced Binary Search Tree (BST) with n nodes?",
-    options: [
-      "O(1)",
-      "O(n)",
-      "O(log n)",
-      "O(n log n)"
-    ],
+    question:
+      "What is the time complexity of searching for an element in a balanced Binary Search Tree (BST) with n nodes?",
+    options: ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
     correctAnswer: 2,
-    explanation: "In a balanced BST, each comparison eliminates half of the remaining nodes, similar to binary search. This gives us O(log n) time complexity. An unbalanced BST could degrade to O(n) in the worst case.",
+    explanation:
+      "In a balanced BST, each comparison eliminates half of the remaining nodes, similar to binary search. This gives us O(log n) time complexity. An unbalanced BST could degrade to O(n) in the worst case.",
     difficulty: "MEDIUM",
     category: "Data Structures",
     solveCount: 14200,
@@ -80,15 +74,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "React useEffect Cleanup",
     slug: "react-useeffect-cleanup",
     question: "When does the cleanup function returned from useEffect run?",
-    codeSnippet: "useEffect(() => {\n  const sub = subscribe();\n  return () => sub.unsubscribe();\n}, [channel]);",
+    codeSnippet:
+      "useEffect(() => {\n  const sub = subscribe();\n  return () => sub.unsubscribe();\n}, [channel]);",
     options: [
       "Only when the component mounts",
       "Only when the component unmounts",
       "Before the effect re-runs and when the component unmounts",
-      "After every render"
+      "After every render",
     ],
     correctAnswer: 2,
-    explanation: "The cleanup function runs in two cases: (1) before the effect re-runs due to dependency changes, and (2) when the component unmounts. This prevents memory leaks and stale subscriptions.",
+    explanation:
+      "The cleanup function runs in two cases: (1) before the effect re-runs due to dependency changes, and (2) when the component unmounts. This prevents memory leaks and stale subscriptions.",
     difficulty: "MEDIUM",
     category: "React",
     solveCount: 11800,
@@ -98,15 +94,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_6",
     title: "SQL JOIN Types",
     slug: "sql-join-types",
-    question: "You have tables 'users' (5 rows) and 'orders' (3 rows, each linked to a user). How many rows does a LEFT JOIN of users to orders return?",
-    options: [
-      "3 rows",
-      "5 rows",
-      "8 rows",
-      "15 rows"
-    ],
+    question:
+      "You have tables 'users' (5 rows) and 'orders' (3 rows, each linked to a user). How many rows does a LEFT JOIN of users to orders return?",
+    options: ["3 rows", "5 rows", "8 rows", "15 rows"],
     correctAnswer: 1,
-    explanation: "A LEFT JOIN returns all rows from the left table (users = 5) with matching rows from the right table. Users without orders get NULL values for order columns. Since 3 users have orders and 2 don't, you get 5 rows total (3 matched + 2 with NULLs).",
+    explanation:
+      "A LEFT JOIN returns all rows from the left table (users = 5) with matching rows from the right table. Users without orders get NULL values for order columns. Since 3 users have orders and 2 don't, you get 5 rows total (3 matched + 2 with NULLs).",
     difficulty: "MEDIUM",
     category: "Databases",
     solveCount: 9800,
@@ -116,16 +109,14 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_7",
     title: "TypeScript Generics",
     slug: "typescript-generics",
-    question: "What TypeScript type does the following function return?\n\nfunction identity<T>(arg: T): T {\n  return arg;\n}\nconst result = identity('hello');",
-    codeSnippet: "function identity<T>(arg: T): T {\n  return arg;\n}\nconst result = identity('hello');",
-    options: [
-      "any",
-      "unknown",
-      "string",
-      "T"
-    ],
+    question:
+      "What TypeScript type does the following function return?\n\nfunction identity<T>(arg: T): T {\n  return arg;\n}\nconst result = identity('hello');",
+    codeSnippet:
+      "function identity<T>(arg: T): T {\n  return arg;\n}\nconst result = identity('hello');",
+    options: ["any", "unknown", "string", "T"],
     correctAnswer: 2,
-    explanation: "TypeScript infers the generic type parameter T from the argument. Since 'hello' is a string, T is inferred as string (specifically the literal type 'hello'). The return type is therefore string.",
+    explanation:
+      "TypeScript infers the generic type parameter T from the argument. Since 'hello' is a string, T is inferred as string (specifically the literal type 'hello'). The return type is therefore string.",
     difficulty: "MEDIUM",
     category: "TypeScript",
     solveCount: 8900,
@@ -140,10 +131,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "RUN apt-get update",
       "COPY . /app",
       "ENV NODE_ENV=production",
-      "ADD package.json /app/"
+      "ADD package.json /app/",
     ],
     correctAnswer: 2,
-    explanation: "ENV, LABEL, EXPOSE, CMD, and ENTRYPOINT create metadata changes but don't add filesystem layers. RUN, COPY, and ADD create new layers because they modify the filesystem. ENV only sets an environment variable.",
+    explanation:
+      "ENV, LABEL, EXPOSE, CMD, and ENTRYPOINT create metadata changes but don't add filesystem layers. RUN, COPY, and ADD create new layers because they modify the filesystem. ENV only sets an environment variable.",
     difficulty: "HARD",
     category: "DevOps",
     solveCount: 5400,
@@ -153,15 +145,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_9",
     title: "System Design: CAP Theorem",
     slug: "cap-theorem",
-    question: "According to the CAP theorem, a distributed system can guarantee at most two of three properties. Which combination is NOT possible during a network partition?",
+    question:
+      "According to the CAP theorem, a distributed system can guarantee at most two of three properties. Which combination is NOT possible during a network partition?",
     options: [
       "Consistency + Availability",
       "Consistency + Partition Tolerance",
       "Availability + Partition Tolerance",
-      "All three simultaneously"
+      "All three simultaneously",
     ],
     correctAnswer: 0,
-    explanation: "During a network partition, you must choose between Consistency and Availability. You can't have both — either you reject requests (lose Availability) to maintain Consistency, or you serve potentially stale data (lose Consistency) to maintain Availability. CP and AP systems exist, but CA is impossible during partitions.",
+    explanation:
+      "During a network partition, you must choose between Consistency and Availability. You can't have both — either you reject requests (lose Availability) to maintain Consistency, or you serve potentially stale data (lose Consistency) to maintain Availability. CP and AP systems exist, but CA is impossible during partitions.",
     difficulty: "HARD",
     category: "System Design",
     solveCount: 4200,
@@ -176,10 +170,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "#header .nav a",
       ".header .nav .link",
       "header nav a.active",
-      "#header a"
+      "#header a",
     ],
     correctAnswer: 0,
-    explanation: "Specificity is calculated as (IDs, Classes, Elements). '#header .nav a' = (1,1,1). '.header .nav .link' = (0,3,0). 'header nav a.active' = (0,1,3). '#header a' = (1,0,1). The first selector wins with the highest ID count and a class.",
+    explanation:
+      "Specificity is calculated as (IDs, Classes, Elements). '#header .nav a' = (1,1,1). '.header .nav .link' = (0,3,0). 'header nav a.active' = (0,1,3). '#header a' = (1,0,1). The first selector wins with the highest ID count and a class.",
     difficulty: "EASY",
     category: "CSS",
     solveCount: 16700,
@@ -189,15 +184,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_11",
     title: "Git Rebase vs Merge",
     slug: "git-rebase-vs-merge",
-    question: "What is the key difference between 'git rebase' and 'git merge'?",
+    question:
+      "What is the key difference between 'git rebase' and 'git merge'?",
     options: [
       "Rebase is faster than merge",
       "Rebase rewrites commit history, merge creates a merge commit",
       "Merge can cause conflicts, rebase cannot",
-      "Rebase only works on remote branches"
+      "Rebase only works on remote branches",
     ],
     correctAnswer: 1,
-    explanation: "Git rebase replays commits from one branch on top of another, creating new commits and rewriting history for a linear timeline. Git merge creates a new merge commit that joins two branches, preserving the original history. Both can cause conflicts.",
+    explanation:
+      "Git rebase replays commits from one branch on top of another, creating new commits and rewriting history for a linear timeline. Git merge creates a new merge commit that joins two branches, preserving the original history. Both can cause conflicts.",
     difficulty: "EASY",
     category: "Git",
     solveCount: 19500,
@@ -207,15 +204,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_12",
     title: "Concurrency: Race Condition",
     slug: "race-condition",
-    question: "Two threads simultaneously execute 'counter++' where counter = 0. The operation involves read, increment, and write steps. What are the possible final values of counter?",
-    options: [
-      "Always 2",
-      "1 or 2",
-      "0, 1, or 2",
-      "Only 1"
-    ],
+    question:
+      "Two threads simultaneously execute 'counter++' where counter = 0. The operation involves read, increment, and write steps. What are the possible final values of counter?",
+    options: ["Always 2", "1 or 2", "0, 1, or 2", "Only 1"],
     correctAnswer: 1,
-    explanation: "If both threads read 0, both increment to 1, and both write 1, the result is 1 (race condition). If the operations are properly sequenced, the result is 2. The value 0 is not possible because at least one write will succeed. So possible values are 1 or 2.",
+    explanation:
+      "If both threads read 0, both increment to 1, and both write 1, the result is 1 (race condition). If the operations are properly sequenced, the result is 2. The value 0 is not possible because at least one write will succeed. So possible values are 1 or 2.",
     difficulty: "HARD",
     category: "Concurrency",
     solveCount: 3800,
@@ -225,15 +219,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_13",
     title: "Kubernetes Pods",
     slug: "kubernetes-pods",
-    question: "In Kubernetes, what happens when a container inside a Pod crashes?",
+    question:
+      "In Kubernetes, what happens when a container inside a Pod crashes?",
     options: [
       "The entire Pod is terminated and never restarted",
       "The kubelet restarts the container with exponential backoff",
       "A new Pod is created on a different node",
-      "The cluster shuts down for safety"
+      "The cluster shuts down for safety",
     ],
     correctAnswer: 1,
-    explanation: "When a container crashes, the kubelet automatically restarts it with an exponential backoff delay (10s, 20s, 40s... up to 5 minutes). This is the default restartPolicy: Always. The Pod itself stays on the same node — only the container is restarted.",
+    explanation:
+      "When a container crashes, the kubelet automatically restarts it with an exponential backoff delay (10s, 20s, 40s... up to 5 minutes). This is the default restartPolicy: Always. The Pod itself stays on the same node — only the container is restarted.",
     difficulty: "HARD",
     category: "DevOps",
     solveCount: 4100,
@@ -243,16 +239,14 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_14",
     title: "JavaScript Event Loop",
     slug: "js-event-loop",
-    question: "What is the output order?\n\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
-    codeSnippet: "console.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
-    options: [
-      "1, 2, 3, 4",
-      "1, 4, 2, 3",
-      "1, 4, 3, 2",
-      "1, 3, 4, 2"
-    ],
+    question:
+      "What is the output order?\n\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
+    codeSnippet:
+      "console.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
+    options: ["1, 2, 3, 4", "1, 4, 2, 3", "1, 4, 3, 2", "1, 3, 4, 2"],
     correctAnswer: 2,
-    explanation: "Synchronous code runs first: '1' then '4'. Microtasks (Promise.then) have priority over macrotasks (setTimeout). So '3' runs next, then '2'. Output: 1, 4, 3, 2.",
+    explanation:
+      "Synchronous code runs first: '1' then '4'. Microtasks (Promise.then) have priority over macrotasks (setTimeout). So '3' runs next, then '2'. Output: 1, 4, 3, 2.",
     difficulty: "MEDIUM",
     category: "JavaScript",
     solveCount: 12100,
@@ -267,10 +261,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "GraphQL is faster because it uses WebSockets",
       "GraphQL eliminates over-fetching and under-fetching of data",
       "GraphQL doesn't require a server",
-      "GraphQL automatically caches all responses"
+      "GraphQL automatically caches all responses",
     ],
     correctAnswer: 1,
-    explanation: "GraphQL lets clients request exactly the data they need in a single query, solving REST's over-fetching (getting unnecessary fields) and under-fetching (needing multiple endpoints). It still uses HTTP, requires a server, and doesn't auto-cache.",
+    explanation:
+      "GraphQL lets clients request exactly the data they need in a single query, solving REST's over-fetching (getting unnecessary fields) and under-fetching (needing multiple endpoints). It still uses HTTP, requires a server, and doesn't auto-cache.",
     difficulty: "EASY",
     category: "Web Development",
     solveCount: 17200,
@@ -285,10 +280,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "An empty object with Object.prototype",
       "null",
       "An object with no prototype chain",
-      "Throws a TypeError"
+      "Throws a TypeError",
     ],
     correctAnswer: 2,
-    explanation: "Object.create(null) creates a truly empty object with no prototype. It has no inherited methods like toString() or hasOwnProperty(). This is sometimes used for creating clean dictionary-like objects.",
+    explanation:
+      "Object.create(null) creates a truly empty object with no prototype. It has no inherited methods like toString() or hasOwnProperty(). This is sometimes used for creating clean dictionary-like objects.",
     difficulty: "MEDIUM",
     category: "JavaScript",
     solveCount: 8700,
@@ -303,10 +299,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Makes the method run faster",
       "Binds the method to the class instance",
       "Defines a method that doesn't receive self or cls as first argument",
-      "Makes the method private"
+      "Makes the method private",
     ],
     correctAnswer: 2,
-    explanation: "@staticmethod defines a method that belongs to the class namespace but doesn't receive the instance (self) or class (cls) as the first argument. It behaves like a regular function that happens to live inside a class.",
+    explanation:
+      "@staticmethod defines a method that belongs to the class namespace but doesn't receive the instance (self) or class (cls) as the first argument. It behaves like a regular function that happens to live inside a class.",
     difficulty: "EASY",
     category: "Python",
     solveCount: 19800,
@@ -316,15 +313,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_18",
     title: "Hash Table Collision",
     slug: "hash-table-collision",
-    question: "What is the average time complexity of searching in a hash table with good hash function?",
-    options: [
-      "O(n)",
-      "O(log n)",
-      "O(1)",
-      "O(n log n)"
-    ],
+    question:
+      "What is the average time complexity of searching in a hash table with good hash function?",
+    options: ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
     correctAnswer: 2,
-    explanation: "With a good hash function and proper load factor, hash table lookups average O(1). The hash function maps the key directly to an index. Worst case is O(n) when all keys collide to the same bucket, but this is rare with a good hash function.",
+    explanation:
+      "With a good hash function and proper load factor, hash table lookups average O(1). The hash function maps the key directly to an index. Worst case is O(n) when all keys collide to the same bucket, but this is rare with a good hash function.",
     difficulty: "EASY",
     category: "Data Structures",
     solveCount: 22100,
@@ -334,15 +328,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_19",
     title: "React Virtual DOM",
     slug: "react-virtual-dom",
-    question: "Why does React use a Virtual DOM instead of directly manipulating the real DOM?",
+    question:
+      "Why does React use a Virtual DOM instead of directly manipulating the real DOM?",
     options: [
       "The Virtual DOM is stored on the server",
       "Batching and diffing changes is faster than direct DOM manipulation",
       "The real DOM doesn't support JavaScript",
-      "The Virtual DOM prevents all re-renders"
+      "The Virtual DOM prevents all re-renders",
     ],
     correctAnswer: 1,
-    explanation: "React's Virtual DOM allows it to batch multiple state changes, compute the minimal set of DOM updates via a diffing algorithm, and apply them in one go. Direct DOM manipulation for every change would cause excessive reflows and repaints.",
+    explanation:
+      "React's Virtual DOM allows it to batch multiple state changes, compute the minimal set of DOM updates via a diffing algorithm, and apply them in one go. Direct DOM manipulation for every change would cause excessive reflows and repaints.",
     difficulty: "EASY",
     category: "React",
     solveCount: 20400,
@@ -352,15 +348,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_20",
     title: "SQL Indexing",
     slug: "sql-indexing",
-    question: "What is the primary disadvantage of adding too many indexes to a database table?",
+    question:
+      "What is the primary disadvantage of adding too many indexes to a database table?",
     options: [
       "SELECT queries become slower",
       "The table can no longer store data",
       "INSERT, UPDATE, and DELETE operations become slower",
-      "Indexes don't work on large tables"
+      "Indexes don't work on large tables",
     ],
     correctAnswer: 2,
-    explanation: "Each index must be updated whenever data is inserted, updated, or deleted. More indexes means more overhead on write operations. While indexes speed up reads, excessive indexing degrades write performance and increases storage usage.",
+    explanation:
+      "Each index must be updated whenever data is inserted, updated, or deleted. More indexes means more overhead on write operations. While indexes speed up reads, excessive indexing degrades write performance and increases storage usage.",
     difficulty: "MEDIUM",
     category: "Databases",
     solveCount: 10500,
@@ -371,15 +369,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "TypeScript Utility Types",
     slug: "typescript-utility-types",
     question: "What does Partial<T> do in TypeScript?",
-    codeSnippet: "interface User {\n  name: string;\n  age: number;\n}\ntype OptionalUser = Partial<User>;",
+    codeSnippet:
+      "interface User {\n  name: string;\n  age: number;\n}\ntype OptionalUser = Partial<User>;",
     options: [
       "Makes all properties required",
       "Makes all properties optional",
       "Removes all properties",
-      "Makes all properties readonly"
+      "Makes all properties readonly",
     ],
     correctAnswer: 1,
-    explanation: "Partial<T> constructs a type with all properties of T set to optional. So Partial<User> becomes { name?: string; age?: number; }. This is useful for update functions where you only want to pass changed fields.",
+    explanation:
+      "Partial<T> constructs a type with all properties of T set to optional. So Partial<User> becomes { name?: string; age?: number; }. This is useful for update functions where you only want to pass changed fields.",
     difficulty: "EASY",
     category: "TypeScript",
     solveCount: 16300,
@@ -389,15 +389,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_22",
     title: "CSS Flexbox",
     slug: "css-flexbox",
-    question: "What does 'justify-content: space-between' do in a flex container?",
+    question:
+      "What does 'justify-content: space-between' do in a flex container?",
     options: [
       "Centers all items",
       "Distributes items with equal space between them, first and last items touch edges",
       "Adds space before the first item only",
-      "Wraps items to the next line"
+      "Wraps items to the next line",
     ],
     correctAnswer: 1,
-    explanation: "justify-content: space-between distributes flex items so the first item is at the start, the last item is at the end, and remaining items have equal space between them. No space is added before the first or after the last item.",
+    explanation:
+      "justify-content: space-between distributes flex items so the first item is at the start, the last item is at the end, and remaining items have equal space between them. No space is added before the first or after the last item.",
     difficulty: "EASY",
     category: "CSS",
     solveCount: 23400,
@@ -412,10 +414,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Deletes the specified commit",
       "Applies the changes from a specific commit onto the current branch",
       "Reverts the specified commit",
-      "Merges two branches together"
+      "Merges two branches together",
     ],
     correctAnswer: 1,
-    explanation: "git cherry-pick takes a specific commit from one branch and applies it to your current branch as a new commit. It's useful when you want to bring a specific fix or feature from another branch without merging the entire branch.",
+    explanation:
+      "git cherry-pick takes a specific commit from one branch and applies it to your current branch as a new commit. It's useful when you want to bring a specific fix or feature from another branch without merging the entire branch.",
     difficulty: "MEDIUM",
     category: "Git",
     solveCount: 11200,
@@ -426,15 +429,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "JavaScript Promises",
     slug: "js-promises",
     question: "What does Promise.all() return if one of the promises rejects?",
-    codeSnippet: "Promise.all([\n  Promise.resolve(1),\n  Promise.reject('error'),\n  Promise.resolve(3)\n]);",
+    codeSnippet:
+      "Promise.all([\n  Promise.resolve(1),\n  Promise.reject('error'),\n  Promise.resolve(3)\n]);",
     options: [
       "[1, 'error', 3]",
       "[1, undefined, 3]",
       "Rejects with 'error'",
-      "Resolves with [1, 3]"
+      "Resolves with [1, 3]",
     ],
     correctAnswer: 2,
-    explanation: "Promise.all() follows a fail-fast behavior. If any promise rejects, the entire Promise.all() immediately rejects with that error, ignoring the results of other promises. Use Promise.allSettled() if you want results from all promises regardless.",
+    explanation:
+      "Promise.all() follows a fail-fast behavior. If any promise rejects, the entire Promise.all() immediately rejects with that error, ignoring the results of other promises. Use Promise.allSettled() if you want results from all promises regardless.",
     difficulty: "MEDIUM",
     category: "JavaScript",
     solveCount: 13400,
@@ -444,15 +449,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_25",
     title: "Python Generator Functions",
     slug: "python-generators",
-    question: "What is the key difference between 'return' and 'yield' in Python?",
+    question:
+      "What is the key difference between 'return' and 'yield' in Python?",
     options: [
       "yield is faster than return",
       "yield pauses the function and can be resumed, return terminates it",
       "return can be used multiple times, yield cannot",
-      "They are identical in behavior"
+      "They are identical in behavior",
     ],
     correctAnswer: 1,
-    explanation: "yield pauses function execution and produces a value. The function state is preserved and can be resumed from where it left off. return terminates the function entirely. Functions with yield become generators that produce values lazily.",
+    explanation:
+      "yield pauses function execution and produces a value. The function state is preserved and can be resumed from where it left off. return terminates the function entirely. Functions with yield become generators that produce values lazily.",
     difficulty: "MEDIUM",
     category: "Python",
     solveCount: 10900,
@@ -462,15 +469,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_26",
     title: "Linked List vs Array",
     slug: "linked-list-vs-array",
-    question: "What is the time complexity of inserting an element at the beginning of a linked list vs an array?",
+    question:
+      "What is the time complexity of inserting an element at the beginning of a linked list vs an array?",
     options: [
       "Both O(1)",
       "Linked list O(1), Array O(n)",
       "Linked list O(n), Array O(1)",
-      "Both O(n)"
+      "Both O(n)",
     ],
     correctAnswer: 1,
-    explanation: "Inserting at the beginning of a linked list is O(1) — just create a new node and point it to the old head. For an array, it's O(n) because every existing element must be shifted one position to the right to make room.",
+    explanation:
+      "Inserting at the beginning of a linked list is O(1) — just create a new node and point it to the old head. For an array, it's O(n) because every existing element must be shifted one position to the right to make room.",
     difficulty: "EASY",
     category: "Data Structures",
     solveCount: 21800,
@@ -480,16 +489,19 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_27",
     title: "React State Batching",
     slug: "react-state-batching",
-    question: "In React 18, how many re-renders does this code cause?\n\nfunction handleClick() {\n  setCount(c => c + 1);\n  setFlag(f => !f);\n  setName('updated');\n}",
-    codeSnippet: "function handleClick() {\n  setCount(c => c + 1);\n  setFlag(f => !f);\n  setName('updated');\n}",
+    question:
+      "In React 18, how many re-renders does this code cause?\n\nfunction handleClick() {\n  setCount(c => c + 1);\n  setFlag(f => !f);\n  setName('updated');\n}",
+    codeSnippet:
+      "function handleClick() {\n  setCount(c => c + 1);\n  setFlag(f => !f);\n  setName('updated');\n}",
     options: [
       "3 re-renders",
       "2 re-renders",
       "1 re-render (batched)",
-      "0 re-renders"
+      "0 re-renders",
     ],
     correctAnswer: 2,
-    explanation: "React 18 introduced automatic batching for all state updates, including those in setTimeout, promises, and event handlers. All three setState calls are batched into a single re-render for better performance.",
+    explanation:
+      "React 18 introduced automatic batching for all state updates, including those in setTimeout, promises, and event handlers. All three setState calls are batched into a single re-render for better performance.",
     difficulty: "MEDIUM",
     category: "React",
     solveCount: 9200,
@@ -504,10 +516,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Duplicate tables",
       "All NULL values",
       "Transitive dependencies",
-      "Foreign keys"
+      "Foreign keys",
     ],
     correctAnswer: 2,
-    explanation: "3NF eliminates transitive dependencies — when a non-key column depends on another non-key column rather than on the primary key. For example, if a table has (student_id, department_id, department_name), the department_name depends on department_id, not on student_id. This should be split into separate tables.",
+    explanation:
+      "3NF eliminates transitive dependencies — when a non-key column depends on another non-key column rather than on the primary key. For example, if a table has (student_id, department_id, department_name), the department_name depends on department_id, not on student_id. This should be split into separate tables.",
     difficulty: "HARD",
     category: "Databases",
     solveCount: 5100,
@@ -518,15 +531,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "TypeScript Type Guards",
     slug: "typescript-type-guards",
     question: "Which of the following is a valid type guard in TypeScript?",
-    codeSnippet: "function isString(value: unknown): value is string {\n  return typeof value === 'string';\n}",
+    codeSnippet:
+      "function isString(value: unknown): value is string {\n  return typeof value === 'string';\n}",
     options: [
       "value as string",
       "value is string (return type annotation)",
       "typeof value",
-      "<string>value"
+      "<string>value",
     ],
     correctAnswer: 1,
-    explanation: "A type guard is a function whose return type is a 'type predicate' (parameter is Type). When the function returns true, TypeScript narrows the type within the conditional block. 'value as string' and '<string>value' are type assertions, not guards.",
+    explanation:
+      "A type guard is a function whose return type is a 'type predicate' (parameter is Type). When the function returns true, TypeScript narrows the type within the conditional block. 'value as string' and '<string>value' are type assertions, not guards.",
     difficulty: "HARD",
     category: "TypeScript",
     solveCount: 6200,
@@ -541,10 +556,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "It ensures the dependent service is healthy before starting",
       "It controls the startup order of services",
       "It links container networks automatically",
-      "It shares volumes between services"
+      "It shares volumes between services",
     ],
     correctAnswer: 1,
-    explanation: "depends_on controls the order in which services are started — but it does NOT wait for the service to be 'ready' or 'healthy'. It only ensures the container has started. For health checks, you need to combine depends_on with the 'condition: service_healthy' option.",
+    explanation:
+      "depends_on controls the order in which services are started — but it does NOT wait for the service to be 'ready' or 'healthy'. It only ensures the container has started. For health checks, you need to combine depends_on with the 'condition: service_healthy' option.",
     difficulty: "MEDIUM",
     category: "DevOps",
     solveCount: 7800,
@@ -554,15 +570,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_31",
     title: "Load Balancer Algorithms",
     slug: "load-balancer-algorithms",
-    question: "Which load balancing algorithm sends each new request to the next server in rotation?",
-    options: [
-      "Least Connections",
-      "Round Robin",
-      "Random",
-      "IP Hash"
-    ],
+    question:
+      "Which load balancing algorithm sends each new request to the next server in rotation?",
+    options: ["Least Connections", "Round Robin", "Random", "IP Hash"],
     correctAnswer: 1,
-    explanation: "Round Robin distributes requests sequentially across servers in a circular order: Server 1, Server 2, Server 3, then back to Server 1. It's simple and works well when servers have similar capacity. Weighted Round Robin adds server capacity awareness.",
+    explanation:
+      "Round Robin distributes requests sequentially across servers in a circular order: Server 1, Server 2, Server 3, then back to Server 1. It's simple and works well when servers have similar capacity. Weighted Round Robin adds server capacity awareness.",
     difficulty: "EASY",
     category: "System Design",
     solveCount: 18600,
@@ -573,15 +586,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "JavaScript 'this' Keyword",
     slug: "js-this-keyword",
     question: "What does 'this' refer to inside an arrow function?",
-    codeSnippet: "const obj = {\n  name: 'Alice',\n  greet: () => {\n    console.log(this.name);\n  }\n};",
+    codeSnippet:
+      "const obj = {\n  name: 'Alice',\n  greet: () => {\n    console.log(this.name);\n  }\n};",
     options: [
       "The object that owns the method (obj)",
       "The global object or undefined (lexical scope)",
       "null",
-      "The arrow function itself"
+      "The arrow function itself",
     ],
     correctAnswer: 1,
-    explanation: "Arrow functions don't have their own 'this'. They inherit 'this' from the enclosing lexical scope (where they were defined). In this case, it's the global scope (or undefined in strict mode), not the obj — a common gotcha.",
+    explanation:
+      "Arrow functions don't have their own 'this'. They inherit 'this' from the enclosing lexical scope (where they were defined). In this case, it's the global scope (or undefined in strict mode), not the obj — a common gotcha.",
     difficulty: "MEDIUM",
     category: "JavaScript",
     solveCount: 11800,
@@ -591,16 +606,18 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_33",
     title: "Python Dictionary Comprehension",
     slug: "python-dict-comprehension",
-    question: "What is the output?\n\nresult = {x: x**2 for x in range(4)}\nprint(result)",
+    question:
+      "What is the output?\n\nresult = {x: x**2 for x in range(4)}\nprint(result)",
     codeSnippet: "result = {x: x**2 for x in range(4)}\nprint(result)",
     options: [
       "{1: 1, 2: 4, 3: 9}",
       "{0: 0, 1: 1, 2: 4, 3: 9}",
       "[0, 1, 4, 9]",
-      "Error"
+      "Error",
     ],
     correctAnswer: 1,
-    explanation: "range(4) produces 0, 1, 2, 3. The dict comprehension maps each x to x**2, creating {0: 0, 1: 1, 2: 4, 3: 9}. Note that range starts from 0 by default.",
+    explanation:
+      "range(4) produces 0, 1, 2, 3. The dict comprehension maps each x to x**2, creating {0: 0, 1: 1, 2: 4, 3: 9}. Note that range starts from 0 by default.",
     difficulty: "EASY",
     category: "Python",
     solveCount: 20100,
@@ -610,15 +627,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_34",
     title: "Binary Search",
     slug: "binary-search",
-    question: "How many comparisons does binary search need in the worst case to find an element in a sorted array of 1,000,000 elements?",
-    options: [
-      "1,000,000",
-      "About 20",
-      "500,000",
-      "About 100"
-    ],
+    question:
+      "How many comparisons does binary search need in the worst case to find an element in a sorted array of 1,000,000 elements?",
+    options: ["1,000,000", "About 20", "500,000", "About 100"],
     correctAnswer: 1,
-    explanation: "Binary search halves the search space each step: log₂(1,000,000) ≈ 19.93, so about 20 comparisons. This is why O(log n) is so powerful — even for a million elements, you need at most 20 checks.",
+    explanation:
+      "Binary search halves the search space each step: log₂(1,000,000) ≈ 19.93, so about 20 comparisons. This is why O(log n) is so powerful — even for a million elements, you need at most 20 checks.",
     difficulty: "EASY",
     category: "Data Structures",
     solveCount: 19400,
@@ -628,15 +642,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_35",
     title: "React Context vs Redux",
     slug: "react-context-vs-redux",
-    question: "What is a key drawback of using React Context for frequently updating global state?",
+    question:
+      "What is a key drawback of using React Context for frequently updating global state?",
     options: [
       "Context doesn't work with TypeScript",
       "Context causes all consumers to re-render on any value change",
       "Context is slower than localStorage",
-      "Context can only hold string values"
+      "Context can only hold string values",
     ],
     correctAnswer: 1,
-    explanation: "When a Context value changes, ALL components consuming that context re-render — even if they only use a small part of the value. Libraries like Redux or Zustand solve this with selectors that allow fine-grained subscriptions.",
+    explanation:
+      "When a Context value changes, ALL components consuming that context re-render — even if they only use a small part of the value. Libraries like Redux or Zustand solve this with selectors that allow fine-grained subscriptions.",
     difficulty: "MEDIUM",
     category: "React",
     solveCount: 8600,
@@ -647,14 +663,10 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "ACID Properties",
     slug: "acid-properties",
     question: "In database transactions, what does the 'I' in ACID stand for?",
-    options: [
-      "Integrity",
-      "Isolation",
-      "Immutability",
-      "Indexing"
-    ],
+    options: ["Integrity", "Isolation", "Immutability", "Indexing"],
     correctAnswer: 1,
-    explanation: "ACID stands for Atomicity, Consistency, Isolation, Durability. Isolation ensures that concurrent transactions don't interfere with each other — each transaction appears to run in isolation, even when multiple transactions execute simultaneously.",
+    explanation:
+      "ACID stands for Atomicity, Consistency, Isolation, Durability. Isolation ensures that concurrent transactions don't interfere with each other — each transaction appears to run in isolation, even when multiple transactions execute simultaneously.",
     difficulty: "EASY",
     category: "Databases",
     solveCount: 22600,
@@ -664,15 +676,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_37",
     title: "CSS Grid Layout",
     slug: "css-grid-layout",
-    question: "What does 'grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))' achieve?",
+    question:
+      "What does 'grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))' achieve?",
     options: [
       "Creates exactly 3 columns of 250px each",
       "A responsive grid that auto-adjusts columns to fit the container, each at least 250px wide",
       "Makes all columns exactly 1fr",
-      "Hides columns smaller than 250px"
+      "Hides columns smaller than 250px",
     ],
     correctAnswer: 1,
-    explanation: "auto-fit fills the row with as many columns as possible. minmax(250px, 1fr) ensures each column is at least 250px but can grow to fill remaining space. This creates a fully responsive grid without media queries.",
+    explanation:
+      "auto-fit fills the row with as many columns as possible. minmax(250px, 1fr) ensures each column is at least 250px but can grow to fill remaining space. This creates a fully responsive grid without media queries.",
     difficulty: "MEDIUM",
     category: "CSS",
     solveCount: 9800,
@@ -687,10 +701,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Permanently deletes uncommitted changes",
       "Temporarily saves uncommitted changes and reverts to a clean working directory",
       "Creates a new branch with current changes",
-      "Pushes changes to remote without committing"
+      "Pushes changes to remote without committing",
     ],
     correctAnswer: 1,
-    explanation: "git stash saves your uncommitted changes (both staged and unstaged) to a stack and restores your working directory to match HEAD. You can later apply stashed changes with 'git stash pop' or 'git stash apply'.",
+    explanation:
+      "git stash saves your uncommitted changes (both staged and unstaged) to a stack and restores your working directory to match HEAD. You can later apply stashed changes with 'git stash pop' or 'git stash apply'.",
     difficulty: "EASY",
     category: "Git",
     solveCount: 21200,
@@ -700,15 +715,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_39",
     title: "Microservices Communication",
     slug: "microservices-communication",
-    question: "Which communication pattern is best for loose coupling between microservices?",
+    question:
+      "Which communication pattern is best for loose coupling between microservices?",
     options: [
       "Synchronous REST calls",
       "Direct database sharing",
       "Asynchronous message queues",
-      "Shared in-memory cache"
+      "Shared in-memory cache",
     ],
     correctAnswer: 2,
-    explanation: "Asynchronous message queues (like RabbitMQ or Kafka) provide the loosest coupling — services don't need to know about each other, and they can operate independently. The producer publishes a message and doesn't wait for a response.",
+    explanation:
+      "Asynchronous message queues (like RabbitMQ or Kafka) provide the loosest coupling — services don't need to know about each other, and they can operate independently. The producer publishes a message and doesn't wait for a response.",
     difficulty: "MEDIUM",
     category: "System Design",
     solveCount: 8400,
@@ -718,15 +735,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_40",
     title: "Deadlock Conditions",
     slug: "deadlock-conditions",
-    question: "How many conditions must hold simultaneously for a deadlock to occur?",
-    options: [
-      "2",
-      "3",
-      "4",
-      "5"
-    ],
+    question:
+      "How many conditions must hold simultaneously for a deadlock to occur?",
+    options: ["2", "3", "4", "5"],
     correctAnswer: 2,
-    explanation: "Deadlock requires all four Coffman conditions simultaneously: (1) Mutual Exclusion, (2) Hold and Wait, (3) No Preemption, (4) Circular Wait. Breaking any one of these conditions prevents deadlock.",
+    explanation:
+      "Deadlock requires all four Coffman conditions simultaneously: (1) Mutual Exclusion, (2) Hold and Wait, (3) No Preemption, (4) Circular Wait. Breaking any one of these conditions prevents deadlock.",
     difficulty: "HARD",
     category: "Concurrency",
     solveCount: 4500,
@@ -736,15 +750,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_41",
     title: "JavaScript WeakMap",
     slug: "js-weakmap",
-    question: "What is the main difference between Map and WeakMap in JavaScript?",
+    question:
+      "What is the main difference between Map and WeakMap in JavaScript?",
     options: [
       "WeakMap is faster",
       "WeakMap keys must be objects and are weakly referenced (garbage-collectible)",
       "WeakMap can only hold numbers",
-      "WeakMap has a size property"
+      "WeakMap has a size property",
     ],
     correctAnswer: 1,
-    explanation: "WeakMap keys must be objects (not primitives) and are held as weak references. If no other reference to the key object exists, it can be garbage collected along with its value. WeakMaps are not iterable and have no size property.",
+    explanation:
+      "WeakMap keys must be objects (not primitives) and are held as weak references. If no other reference to the key object exists, it can be garbage collected along with its value. WeakMaps are not iterable and have no size property.",
     difficulty: "HARD",
     category: "JavaScript",
     solveCount: 5300,
@@ -759,10 +775,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Multiple processes from running",
       "Multiple threads from executing Python bytecode simultaneously",
       "Importing external modules",
-      "Using more than 4GB of RAM"
+      "Using more than 4GB of RAM",
     ],
     correctAnswer: 1,
-    explanation: "The GIL is a mutex that allows only one thread to execute Python bytecode at a time, even on multi-core CPUs. This simplifies memory management but limits CPU-bound multithreading. Use multiprocessing or async I/O to work around it.",
+    explanation:
+      "The GIL is a mutex that allows only one thread to execute Python bytecode at a time, even on multi-core CPUs. This simplifies memory management but limits CPU-bound multithreading. Use multiprocessing or async I/O to work around it.",
     difficulty: "HARD",
     category: "Python",
     solveCount: 4800,
@@ -772,15 +789,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_43",
     title: "Heap Data Structure",
     slug: "heap-data-structure",
-    question: "What is the time complexity of extracting the minimum element from a min-heap?",
-    options: [
-      "O(1)",
-      "O(log n)",
-      "O(n)",
-      "O(n log n)"
-    ],
+    question:
+      "What is the time complexity of extracting the minimum element from a min-heap?",
+    options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
     correctAnswer: 1,
-    explanation: "Finding the minimum is O(1) since it's always at the root, but extracting (removing) it requires re-heapifying — moving the last element to the root and sifting it down. This takes O(log n) due to the tree height.",
+    explanation:
+      "Finding the minimum is O(1) since it's always at the root, but extracting (removing) it requires re-heapifying — moving the last element to the root and sifting it down. This takes O(log n) due to the tree height.",
     difficulty: "MEDIUM",
     category: "Data Structures",
     solveCount: 10200,
@@ -795,10 +809,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Fetch data directly from a database",
       "Use useState or useEffect hooks",
       "Render HTML on the server",
-      "Import server-only libraries"
+      "Import server-only libraries",
     ],
     correctAnswer: 1,
-    explanation: "React Server Components run only on the server and cannot use client-side hooks like useState, useEffect, or event handlers. They can directly access databases, use server-only code, and send rendered HTML to the client with zero JavaScript bundle cost.",
+    explanation:
+      "React Server Components run only on the server and cannot use client-side hooks like useState, useEffect, or event handlers. They can directly access databases, use server-only code, and send rendered HTML to the client with zero JavaScript bundle cost.",
     difficulty: "MEDIUM",
     category: "React",
     solveCount: 7900,
@@ -808,15 +823,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_45",
     title: "OAuth 2.0 Flows",
     slug: "oauth-flows",
-    question: "Which OAuth 2.0 flow is recommended for single-page applications (SPAs)?",
+    question:
+      "Which OAuth 2.0 flow is recommended for single-page applications (SPAs)?",
     options: [
       "Client Credentials Grant",
       "Authorization Code with PKCE",
       "Implicit Grant",
-      "Resource Owner Password Grant"
+      "Resource Owner Password Grant",
     ],
     correctAnswer: 1,
-    explanation: "Authorization Code with PKCE (Proof Key for Code Exchange) is the recommended flow for SPAs. The Implicit Grant was previously used but is now discouraged due to token exposure in the URL. PKCE adds a code verifier/challenge to prevent authorization code interception.",
+    explanation:
+      "Authorization Code with PKCE (Proof Key for Code Exchange) is the recommended flow for SPAs. The Implicit Grant was previously used but is now discouraged due to token exposure in the URL. PKCE adds a code verifier/challenge to prevent authorization code interception.",
     difficulty: "HARD",
     category: "Web Development",
     solveCount: 4900,
@@ -826,15 +843,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_46",
     title: "CSS Position Property",
     slug: "css-position",
-    question: "What is the difference between 'position: absolute' and 'position: fixed'?",
+    question:
+      "What is the difference between 'position: absolute' and 'position: fixed'?",
     options: [
       "They are identical",
       "Absolute is relative to the nearest positioned ancestor, fixed is relative to the viewport",
       "Fixed is relative to the parent, absolute is relative to the viewport",
-      "Absolute doesn't work inside flexbox"
+      "Absolute doesn't work inside flexbox",
     ],
     correctAnswer: 1,
-    explanation: "position: absolute positions an element relative to its nearest positioned (non-static) ancestor. position: fixed positions relative to the viewport — it stays in place when scrolling. Both remove the element from normal document flow.",
+    explanation:
+      "position: absolute positions an element relative to its nearest positioned (non-static) ancestor. position: fixed positions relative to the viewport — it stays in place when scrolling. Both remove the element from normal document flow.",
     difficulty: "EASY",
     category: "CSS",
     solveCount: 24100,
@@ -844,15 +863,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_47",
     title: "Consistent Hashing",
     slug: "consistent-hashing",
-    question: "What problem does consistent hashing solve in distributed systems?",
+    question:
+      "What problem does consistent hashing solve in distributed systems?",
     options: [
       "Encrypting data at rest",
       "Minimizing key remapping when nodes are added or removed",
       "Sorting data across nodes",
-      "Compressing network packets"
+      "Compressing network packets",
     ],
     correctAnswer: 1,
-    explanation: "Traditional hashing (hash % n) remaps almost all keys when n changes. Consistent hashing arranges servers on a ring — when a server is added/removed, only keys in that segment remap. This is critical for distributed caches and databases.",
+    explanation:
+      "Traditional hashing (hash % n) remaps almost all keys when n changes. Consistent hashing arranges servers on a ring — when a server is added/removed, only keys in that segment remap. This is critical for distributed caches and databases.",
     difficulty: "HARD",
     category: "System Design",
     solveCount: 3900,
@@ -862,15 +883,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_48",
     title: "CI/CD Pipelines",
     slug: "ci-cd-pipelines",
-    question: "What is the difference between Continuous Delivery and Continuous Deployment?",
+    question:
+      "What is the difference between Continuous Delivery and Continuous Deployment?",
     options: [
       "They are the same thing",
       "Continuous Delivery requires manual approval to deploy to production, Continuous Deployment is fully automated",
       "Continuous Deployment only runs tests, Continuous Delivery also builds",
-      "Continuous Delivery doesn't use version control"
+      "Continuous Delivery doesn't use version control",
     ],
     correctAnswer: 1,
-    explanation: "Continuous Delivery means code is always in a deployable state and can be released to production with a manual approval step. Continuous Deployment goes further — every change that passes all tests is automatically deployed to production with no human intervention.",
+    explanation:
+      "Continuous Delivery means code is always in a deployable state and can be released to production with a manual approval step. Continuous Deployment goes further — every change that passes all tests is automatically deployed to production with no human intervention.",
     difficulty: "MEDIUM",
     category: "DevOps",
     solveCount: 9100,
@@ -880,16 +903,14 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_49",
     title: "JavaScript Spread vs Rest",
     slug: "js-spread-rest",
-    question: "What is the output?\n\nconst [first, ...rest] = [1, 2, 3, 4, 5];\nconsole.log(rest);",
-    codeSnippet: "const [first, ...rest] = [1, 2, 3, 4, 5];\nconsole.log(rest);",
-    options: [
-      "[1]",
-      "[2, 3, 4, 5]",
-      "[1, 2, 3, 4, 5]",
-      "5"
-    ],
+    question:
+      "What is the output?\n\nconst [first, ...rest] = [1, 2, 3, 4, 5];\nconsole.log(rest);",
+    codeSnippet:
+      "const [first, ...rest] = [1, 2, 3, 4, 5];\nconsole.log(rest);",
+    options: ["[1]", "[2, 3, 4, 5]", "[1, 2, 3, 4, 5]", "5"],
     correctAnswer: 1,
-    explanation: "The rest syntax (...rest) in destructuring collects the remaining elements into a new array. 'first' gets 1, and 'rest' collects everything else: [2, 3, 4, 5]. The spread operator looks identical but is used in a different context (expanding, not collecting).",
+    explanation:
+      "The rest syntax (...rest) in destructuring collects the remaining elements into a new array. 'first' gets 1, and 'rest' collects everything else: [2, 3, 4, 5]. The spread operator looks identical but is used in a different context (expanding, not collecting).",
     difficulty: "EASY",
     category: "JavaScript",
     solveCount: 20800,
@@ -899,15 +920,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_50",
     title: "Python Asyncio",
     slug: "python-asyncio",
-    question: "What keyword is used to pause execution inside an async function until a coroutine completes?",
-    options: [
-      "yield",
-      "wait",
-      "await",
-      "pause"
-    ],
+    question:
+      "What keyword is used to pause execution inside an async function until a coroutine completes?",
+    options: ["yield", "wait", "await", "pause"],
     correctAnswer: 2,
-    explanation: "'await' suspends the execution of the async function until the awaited coroutine completes and returns a result. It can only be used inside functions defined with 'async def'. While 'yield' is used in generators, 'await' is specifically for async/await concurrency.",
+    explanation:
+      "'await' suspends the execution of the async function until the awaited coroutine completes and returns a result. It can only be used inside functions defined with 'async def'. While 'yield' is used in generators, 'await' is specifically for async/await concurrency.",
     difficulty: "EASY",
     category: "Python",
     solveCount: 18900,
@@ -917,16 +935,14 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_51",
     title: "JavaScript Optional Chaining",
     slug: "js-optional-chaining",
-    question: "What does the following expression return?\n\nconst user = { profile: null };\nconsole.log(user.profile?.address?.city);",
-    codeSnippet: "const user = { profile: null };\nconsole.log(user.profile?.address?.city);",
-    options: [
-      "null",
-      "undefined",
-      "Throws TypeError",
-      "An empty string"
-    ],
+    question:
+      "What does the following expression return?\n\nconst user = { profile: null };\nconsole.log(user.profile?.address?.city);",
+    codeSnippet:
+      "const user = { profile: null };\nconsole.log(user.profile?.address?.city);",
+    options: ["null", "undefined", "Throws TypeError", "An empty string"],
     correctAnswer: 1,
-    explanation: "Optional chaining (?.) short-circuits and returns undefined when encountering null or undefined. Since profile is null, the chain stops and returns undefined — not null. Without ?., accessing .address on null would throw a TypeError.",
+    explanation:
+      "Optional chaining (?.) short-circuits and returns undefined when encountering null or undefined. Since profile is null, the chain stops and returns undefined — not null. Without ?., accessing .address on null would throw a TypeError.",
     difficulty: "EASY",
     category: "JavaScript",
     solveCount: 21500,
@@ -942,10 +958,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Compares two values",
       "Assigns a value and returns it in a single expression",
       "Creates a constant variable",
-      "Performs integer division"
+      "Performs integer division",
     ],
     correctAnswer: 1,
-    explanation: "The walrus operator (:=) is an assignment expression — it assigns a value to a variable AND returns that value, all within an expression. This avoids computing a value twice or using a separate assignment line before a condition.",
+    explanation:
+      "The walrus operator (:=) is an assignment expression — it assigns a value to a variable AND returns that value, all within an expression. This avoids computing a value twice or using a separate assignment line before a condition.",
     difficulty: "MEDIUM",
     category: "Python",
     solveCount: 9400,
@@ -955,15 +972,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_53",
     title: "Graph Traversal: BFS vs DFS",
     slug: "bfs-vs-dfs",
-    question: "Which traversal algorithm is guaranteed to find the shortest path in an unweighted graph?",
+    question:
+      "Which traversal algorithm is guaranteed to find the shortest path in an unweighted graph?",
     options: [
       "Depth-First Search (DFS)",
       "Breadth-First Search (BFS)",
       "Both find shortest paths",
-      "Neither finds shortest paths"
+      "Neither finds shortest paths",
     ],
     correctAnswer: 1,
-    explanation: "BFS explores nodes level by level, so the first time it reaches a node is via the shortest path (in unweighted graphs). DFS may find a path first, but it could be longer since it dives deep before exploring neighbors.",
+    explanation:
+      "BFS explores nodes level by level, so the first time it reaches a node is via the shortest path (in unweighted graphs). DFS may find a path first, but it could be longer since it dives deep before exploring neighbors.",
     difficulty: "MEDIUM",
     category: "Data Structures",
     solveCount: 11600,
@@ -974,15 +993,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "React useMemo Hook",
     slug: "react-usememo",
     question: "When should you use useMemo?",
-    codeSnippet: "const sorted = useMemo(\n  () => items.sort((a, b) => a - b),\n  [items]\n);",
+    codeSnippet:
+      "const sorted = useMemo(\n  () => items.sort((a, b) => a - b),\n  [items]\n);",
     options: [
       "For every variable in a component",
       "For expensive computations that should only re-run when dependencies change",
       "To replace useState",
-      "To trigger side effects"
+      "To trigger side effects",
     ],
     correctAnswer: 1,
-    explanation: "useMemo memoizes the result of an expensive computation and only recalculates when its dependencies change. It prevents unnecessary recalculation on every render. Don't overuse it — the memoization itself has a cost, so only use it for genuinely expensive operations.",
+    explanation:
+      "useMemo memoizes the result of an expensive computation and only recalculates when its dependencies change. It prevents unnecessary recalculation on every render. Don't overuse it — the memoization itself has a cost, so only use it for genuinely expensive operations.",
     difficulty: "MEDIUM",
     category: "React",
     solveCount: 9800,
@@ -992,15 +1013,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_55",
     title: "SQL Window Functions",
     slug: "sql-window-functions",
-    question: "What does ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) do?",
+    question:
+      "What does ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) do?",
     options: [
       "Returns the total number of rows",
       "Assigns a unique sequential number to rows within each department, ordered by salary descending",
       "Deletes duplicate rows",
-      "Groups rows by department"
+      "Groups rows by department",
     ],
     correctAnswer: 1,
-    explanation: "ROW_NUMBER() assigns a sequential integer to each row. PARTITION BY resets the numbering for each department. ORDER BY salary DESC means the highest-paid employee in each department gets row number 1. This is commonly used to find the top N per group.",
+    explanation:
+      "ROW_NUMBER() assigns a sequential integer to each row. PARTITION BY resets the numbering for each department. ORDER BY salary DESC means the highest-paid employee in each department gets row number 1. This is commonly used to find the top N per group.",
     difficulty: "HARD",
     category: "Databases",
     solveCount: 5600,
@@ -1011,15 +1034,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "TypeScript Discriminated Unions",
     slug: "typescript-discriminated-unions",
     question: "What pattern makes this code type-safe?",
-    codeSnippet: "type Shape =\n  | { kind: 'circle'; radius: number }\n  | { kind: 'square'; side: number };\n\nfunction area(s: Shape) {\n  switch (s.kind) {\n    case 'circle': return Math.PI * s.radius ** 2;\n    case 'square': return s.side ** 2;\n  }\n}",
+    codeSnippet:
+      "type Shape =\n  | { kind: 'circle'; radius: number }\n  | { kind: 'square'; side: number };\n\nfunction area(s: Shape) {\n  switch (s.kind) {\n    case 'circle': return Math.PI * s.radius ** 2;\n    case 'square': return s.side ** 2;\n  }\n}",
     options: [
       "Type casting",
       "Discriminated union with a common literal property",
       "Generic constraints",
-      "Module augmentation"
+      "Module augmentation",
     ],
     correctAnswer: 1,
-    explanation: "A discriminated union uses a common property ('kind') with literal types to distinguish between union members. TypeScript narrows the type in each switch case — in 'circle', it knows s.radius exists; in 'square', it knows s.side exists.",
+    explanation:
+      "A discriminated union uses a common property ('kind') with literal types to distinguish between union members. TypeScript narrows the type in each switch case — in 'circle', it knows s.radius exists; in 'square', it knows s.side exists.",
     difficulty: "MEDIUM",
     category: "TypeScript",
     solveCount: 7400,
@@ -1034,10 +1059,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "It stores your Terraform code",
       "It maps real-world resources to your configuration for tracking and planning changes",
       "It replaces version control",
-      "It encrypts all infrastructure"
+      "It encrypts all infrastructure",
     ],
     correctAnswer: 1,
-    explanation: "Terraform state tracks the mapping between your configuration and real infrastructure resources. It's how Terraform knows what exists, what to create, update, or destroy. Without state, Terraform would have no way to know what it previously provisioned.",
+    explanation:
+      "Terraform state tracks the mapping between your configuration and real infrastructure resources. It's how Terraform knows what exists, what to create, update, or destroy. Without state, Terraform would have no way to know what it previously provisioned.",
     difficulty: "MEDIUM",
     category: "DevOps",
     solveCount: 7200,
@@ -1047,15 +1073,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_58",
     title: "Rate Limiting",
     slug: "rate-limiting",
-    question: "Which algorithm allows a burst of requests but limits the average rate over time?",
+    question:
+      "Which algorithm allows a burst of requests but limits the average rate over time?",
     options: [
       "Fixed Window Counter",
       "Token Bucket",
       "Simple Queue",
-      "Round Robin"
+      "Round Robin",
     ],
     correctAnswer: 1,
-    explanation: "The Token Bucket algorithm adds tokens at a fixed rate. Each request consumes a token. The bucket has a maximum capacity, allowing bursts up to that limit. When empty, requests are throttled. This is used by AWS, Stripe, and most API rate limiters.",
+    explanation:
+      "The Token Bucket algorithm adds tokens at a fixed rate. Each request consumes a token. The bucket has a maximum capacity, allowing bursts up to that limit. When empty, requests are throttled. This is used by AWS, Stripe, and most API rate limiters.",
     difficulty: "HARD",
     category: "System Design",
     solveCount: 4100,
@@ -1070,10 +1098,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Container queries don't exist yet",
       "Container queries respond to the size of a parent container, not the viewport",
       "Media queries are faster",
-      "Container queries only work with flexbox"
+      "Container queries only work with flexbox",
     ],
     correctAnswer: 1,
-    explanation: "Media queries respond to the viewport size. Container queries respond to the size of a parent container element, making components truly responsive regardless of where they're placed. This enables reusable components that adapt to their available space.",
+    explanation:
+      "Media queries respond to the viewport size. Container queries respond to the size of a parent container element, making components truly responsive regardless of where they're placed. This enables reusable components that adapt to their available space.",
     difficulty: "MEDIUM",
     category: "CSS",
     solveCount: 8200,
@@ -1088,10 +1117,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Splits a branch into two",
       "Uses binary search to find the commit that introduced a bug",
       "Merges two commits together",
-      "Deletes half of the commit history"
+      "Deletes half of the commit history",
     ],
     correctAnswer: 1,
-    explanation: "git bisect performs a binary search through your commit history. You mark a 'good' and 'bad' commit, and Git checks out the midpoint for you to test. It halves the search space each step, finding the offending commit in O(log n) steps.",
+    explanation:
+      "git bisect performs a binary search through your commit history. You mark a 'good' and 'bad' commit, and Git checks out the midpoint for you to test. It halves the search space each step, finding the offending commit in O(log n) steps.",
     difficulty: "MEDIUM",
     category: "Git",
     solveCount: 8900,
@@ -1102,15 +1132,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "JavaScript Proxy Object",
     slug: "js-proxy",
     question: "What can a JavaScript Proxy intercept?",
-    codeSnippet: "const handler = {\n  get(target, prop) {\n    return prop in target ? target[prop] : 'default';\n  }\n};\nconst proxy = new Proxy({}, handler);",
+    codeSnippet:
+      "const handler = {\n  get(target, prop) {\n    return prop in target ? target[prop] : 'default';\n  }\n};\nconst proxy = new Proxy({}, handler);",
     options: [
       "Only property reads",
       "Property reads, writes, deletion, function calls, and more",
       "Only function calls",
-      "Nothing — it's just a wrapper"
+      "Nothing — it's just a wrapper",
     ],
     correctAnswer: 1,
-    explanation: "Proxy can intercept virtually any object operation via traps: get, set, deleteProperty, has (in operator), apply (function calls), construct (new), ownKeys, getPrototypeOf, and more. It's the foundation for reactive frameworks like Vue 3.",
+    explanation:
+      "Proxy can intercept virtually any object operation via traps: get, set, deleteProperty, has (in operator), apply (function calls), construct (new), ownKeys, getPrototypeOf, and more. It's the foundation for reactive frameworks like Vue 3.",
     difficulty: "HARD",
     category: "JavaScript",
     solveCount: 4600,
@@ -1120,15 +1152,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_62",
     title: "Python Context Managers",
     slug: "python-context-managers",
-    question: "What methods must a class implement to be used as a context manager (with statement)?",
+    question:
+      "What methods must a class implement to be used as a context manager (with statement)?",
     options: [
       "__init__ and __del__",
       "__enter__ and __exit__",
       "__open__ and __close__",
-      "__start__ and __stop__"
+      "__start__ and __stop__",
     ],
     correctAnswer: 1,
-    explanation: "__enter__ is called when entering the 'with' block (returns the resource), and __exit__ is called when leaving (handles cleanup, even if an exception occurred). The @contextmanager decorator from contextlib provides a simpler alternative using generators.",
+    explanation:
+      "__enter__ is called when entering the 'with' block (returns the resource), and __exit__ is called when leaving (handles cleanup, even if an exception occurred). The @contextmanager decorator from contextlib provides a simpler alternative using generators.",
     difficulty: "MEDIUM",
     category: "Python",
     solveCount: 11200,
@@ -1143,10 +1177,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Sorting numbers",
       "Autocomplete and spell checking with prefix-based lookups",
       "Graph shortest paths",
-      "Memory allocation"
+      "Memory allocation",
     ],
     correctAnswer: 1,
-    explanation: "A Trie stores strings character by character in a tree structure, making prefix lookups extremely efficient — O(m) where m is the prefix length. It's used in autocomplete, spell checkers, IP routing tables, and dictionary implementations.",
+    explanation:
+      "A Trie stores strings character by character in a tree structure, making prefix lookups extremely efficient — O(m) where m is the prefix length. It's used in autocomplete, spell checkers, IP routing tables, and dictionary implementations.",
     difficulty: "MEDIUM",
     category: "Data Structures",
     solveCount: 9500,
@@ -1161,10 +1196,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Catch JavaScript errors in components",
       "Show fallback UI while waiting for asynchronous content to load",
       "Prevent re-renders entirely",
-      "Replace Redux for state management"
+      "Replace Redux for state management",
     ],
     correctAnswer: 1,
-    explanation: "Suspense lets you declaratively specify a loading state (fallback) while waiting for lazy-loaded components, data fetching, or other async operations to complete. It integrates with React.lazy() for code splitting and server-side streaming.",
+    explanation:
+      "Suspense lets you declaratively specify a loading state (fallback) while waiting for lazy-loaded components, data fetching, or other async operations to complete. It integrates with React.lazy() for code splitting and server-side streaming.",
     difficulty: "EASY",
     category: "React",
     solveCount: 15200,
@@ -1174,15 +1210,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_65",
     title: "NoSQL vs SQL",
     slug: "nosql-vs-sql",
-    question: "When is a document database (like MongoDB) preferred over a relational database?",
+    question:
+      "When is a document database (like MongoDB) preferred over a relational database?",
     options: [
       "When you need strict ACID transactions across multiple tables",
       "When your data is hierarchical, schema-flexible, and read-heavy",
       "When you need complex JOIN operations",
-      "When data integrity constraints are critical"
+      "When data integrity constraints are critical",
     ],
     correctAnswer: 1,
-    explanation: "Document databases excel with nested/hierarchical data, flexible schemas, and read-heavy workloads. They store related data together (denormalized), avoiding JOINs. Relational databases are better for structured data with complex relationships and strict consistency requirements.",
+    explanation:
+      "Document databases excel with nested/hierarchical data, flexible schemas, and read-heavy workloads. They store related data together (denormalized), avoiding JOINs. Relational databases are better for structured data with complex relationships and strict consistency requirements.",
     difficulty: "MEDIUM",
     category: "Databases",
     solveCount: 10100,
@@ -1193,15 +1231,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "TypeScript Mapped Types",
     slug: "typescript-mapped-types",
     question: "What does Readonly<T> produce?",
-    codeSnippet: "interface Config {\n  host: string;\n  port: number;\n}\ntype FrozenConfig = Readonly<Config>;",
+    codeSnippet:
+      "interface Config {\n  host: string;\n  port: number;\n}\ntype FrozenConfig = Readonly<Config>;",
     options: [
       "All properties become optional",
       "All properties become read-only (cannot be reassigned)",
       "All properties become strings",
-      "The type is deleted"
+      "The type is deleted",
     ],
     correctAnswer: 1,
-    explanation: "Readonly<T> creates a type where all properties are prefixed with 'readonly'. Attempting to reassign any property on a FrozenConfig value will cause a TypeScript compile-time error. The runtime values are unchanged — it's purely a type-level guard.",
+    explanation:
+      "Readonly<T> creates a type where all properties are prefixed with 'readonly'. Attempting to reassign any property on a FrozenConfig value will cause a TypeScript compile-time error. The runtime values are unchanged — it's purely a type-level guard.",
     difficulty: "EASY",
     category: "TypeScript",
     solveCount: 17100,
@@ -1211,15 +1251,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_67",
     title: "Kubernetes Services",
     slug: "k8s-services",
-    question: "What type of Kubernetes Service exposes a pod to traffic from outside the cluster?",
+    question:
+      "What type of Kubernetes Service exposes a pod to traffic from outside the cluster?",
     options: [
       "ClusterIP",
       "NodePort or LoadBalancer",
       "ExternalName",
-      "HeadlessService"
+      "HeadlessService",
     ],
     correctAnswer: 1,
-    explanation: "ClusterIP (default) is internal only. NodePort opens a port on every node, and LoadBalancer provisions an external load balancer — both expose pods externally. ExternalName maps to a DNS name. For production, LoadBalancer or Ingress controllers are preferred.",
+    explanation:
+      "ClusterIP (default) is internal only. NodePort opens a port on every node, and LoadBalancer provisions an external load balancer — both expose pods externally. ExternalName maps to a DNS name. For production, LoadBalancer or Ingress controllers are preferred.",
     difficulty: "HARD",
     category: "DevOps",
     solveCount: 4300,
@@ -1234,10 +1276,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Creating read replicas of a database",
       "Splitting data across multiple database instances based on a shard key",
       "Encrypting database columns",
-      "Backing up a database to cold storage"
+      "Backing up a database to cold storage",
     ],
     correctAnswer: 1,
-    explanation: "Sharding horizontally partitions data across multiple database instances. Each shard holds a subset of data determined by a shard key (e.g., user_id % num_shards). It enables horizontal scaling beyond a single server's capacity but adds complexity for cross-shard queries.",
+    explanation:
+      "Sharding horizontally partitions data across multiple database instances. Each shard holds a subset of data determined by a shard key (e.g., user_id % num_shards). It enables horizontal scaling beyond a single server's capacity but adds complexity for cross-shard queries.",
     difficulty: "HARD",
     category: "System Design",
     solveCount: 4400,
@@ -1252,10 +1295,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "They are identical",
       "A mutex allows only one thread access; a semaphore can allow multiple threads up to a count",
       "A semaphore is faster",
-      "A mutex works across networks, a semaphore doesn't"
+      "A mutex works across networks, a semaphore doesn't",
     ],
     correctAnswer: 1,
-    explanation: "A mutex (mutual exclusion) is a binary lock — only one thread can hold it at a time. A semaphore has a counter and can allow up to N threads to access a resource concurrently. A mutex with count 1 is similar to a binary semaphore, but mutexes also have ownership semantics.",
+    explanation:
+      "A mutex (mutual exclusion) is a binary lock — only one thread can hold it at a time. A semaphore has a counter and can allow up to N threads to access a resource concurrently. A mutex with count 1 is similar to a binary semaphore, but mutexes also have ownership semantics.",
     difficulty: "HARD",
     category: "Concurrency",
     solveCount: 3600,
@@ -1270,10 +1314,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Symbols are always equal to each other",
       "Every Symbol() call creates a guaranteed unique value",
       "Symbols can only be numbers",
-      "Symbols are automatically converted to strings"
+      "Symbols are automatically converted to strings",
     ],
     correctAnswer: 1,
-    explanation: "Every Symbol() creates a unique, immutable value — even Symbol('a') !== Symbol('a'). Symbols are used as unique object property keys that won't collide with string keys. They're also used for built-in behaviors like Symbol.iterator and Symbol.toPrimitive.",
+    explanation:
+      "Every Symbol() creates a unique, immutable value — even Symbol('a') !== Symbol('a'). Symbols are used as unique object property keys that won't collide with string keys. They're also used for built-in behaviors like Symbol.iterator and Symbol.toPrimitive.",
     difficulty: "MEDIUM",
     category: "JavaScript",
     solveCount: 8100,
@@ -1284,15 +1329,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "Python Dataclasses",
     slug: "python-dataclasses",
     question: "What does the @dataclass decorator automatically generate?",
-    codeSnippet: "from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float",
+    codeSnippet:
+      "from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float",
     options: [
       "Only __init__",
       "__init__, __repr__, __eq__ and more",
       "Only __str__",
-      "A database schema"
+      "A database schema",
     ],
     correctAnswer: 1,
-    explanation: "@dataclass automatically generates __init__ (constructor), __repr__ (string representation), __eq__ (equality comparison), and optionally __hash__, __lt__ etc. It reduces boilerplate for classes that are primarily used to store data.",
+    explanation:
+      "@dataclass automatically generates __init__ (constructor), __repr__ (string representation), __eq__ (equality comparison), and optionally __hash__, __lt__ etc. It reduces boilerplate for classes that are primarily used to store data.",
     difficulty: "EASY",
     category: "Python",
     solveCount: 17600,
@@ -1302,15 +1349,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_72",
     title: "Dynamic Programming",
     slug: "dynamic-programming",
-    question: "What are the two key properties a problem must have for dynamic programming to apply?",
+    question:
+      "What are the two key properties a problem must have for dynamic programming to apply?",
     options: [
       "Sorting and searching",
       "Optimal substructure and overlapping subproblems",
       "Recursion and iteration",
-      "Constant space and linear time"
+      "Constant space and linear time",
     ],
     correctAnswer: 1,
-    explanation: "Optimal substructure means the optimal solution can be built from optimal solutions to subproblems. Overlapping subproblems means the same subproblems are solved repeatedly. DP stores these results (memoization/tabulation) to avoid redundant computation.",
+    explanation:
+      "Optimal substructure means the optimal solution can be built from optimal solutions to subproblems. Overlapping subproblems means the same subproblems are solved repeatedly. DP stores these results (memoization/tabulation) to avoid redundant computation.",
     difficulty: "MEDIUM",
     category: "Data Structures",
     solveCount: 9900,
@@ -1320,15 +1369,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_73",
     title: "Next.js App Router",
     slug: "nextjs-app-router",
-    question: "In Next.js App Router, what does a loading.tsx file in a route folder do?",
+    question:
+      "In Next.js App Router, what does a loading.tsx file in a route folder do?",
     options: [
       "Displays an error page",
       "Shows an instant loading UI via React Suspense while the page content loads",
       "Redirects to another page",
-      "Defines API routes"
+      "Defines API routes",
     ],
     correctAnswer: 1,
-    explanation: "loading.tsx creates an automatic loading UI using React Suspense. It's shown instantly while the route segment's content is loading, providing a better UX than a blank screen. It wraps the page content in a Suspense boundary with the loading component as the fallback.",
+    explanation:
+      "loading.tsx creates an automatic loading UI using React Suspense. It's shown instantly while the route segment's content is loading, providing a better UX than a blank screen. It wraps the page content in a Suspense boundary with the loading component as the fallback.",
     difficulty: "EASY",
     category: "React",
     solveCount: 14800,
@@ -1338,15 +1389,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_74",
     title: "Redis Data Types",
     slug: "redis-data-types",
-    question: "Which Redis data type is best for implementing a real-time leaderboard?",
-    options: [
-      "String",
-      "Sorted Set (ZSET)",
-      "List",
-      "Hash"
-    ],
+    question:
+      "Which Redis data type is best for implementing a real-time leaderboard?",
+    options: ["String", "Sorted Set (ZSET)", "List", "Hash"],
     correctAnswer: 1,
-    explanation: "Sorted Sets (ZSET) store members with scores, automatically sorted by score. ZRANGEBYSCORE and ZRANK provide O(log n) lookups. This makes ZSETs perfect for leaderboards — you can get top N players, a player's rank, and score ranges efficiently.",
+    explanation:
+      "Sorted Sets (ZSET) store members with scores, automatically sorted by score. ZRANGEBYSCORE and ZRANK provide O(log n) lookups. This makes ZSETs perfect for leaderboards — you can get top N players, a player's rank, and score ranges efficiently.",
     difficulty: "MEDIUM",
     category: "Databases",
     solveCount: 8700,
@@ -1361,10 +1409,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "The z-index of elements",
       "The order of precedence in which CSS rules from different sources are applied",
       "The number of CSS files loaded",
-      "Animation timing"
+      "Animation timing",
     ],
     correctAnswer: 1,
-    explanation: "@layer lets you define explicit layers of CSS with controlled precedence. Rules in later-declared layers override earlier ones regardless of specificity. This gives authors fine control over the cascade, especially useful for managing third-party CSS and design systems.",
+    explanation:
+      "@layer lets you define explicit layers of CSS with controlled precedence. Rules in later-declared layers override earlier ones regardless of specificity. This gives authors fine control over the cascade, especially useful for managing third-party CSS and design systems.",
     difficulty: "HARD",
     category: "CSS",
     solveCount: 3800,
@@ -1374,15 +1423,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_76",
     title: "WebSocket vs HTTP",
     slug: "websocket-vs-http",
-    question: "What is the main advantage of WebSocket over HTTP for real-time applications?",
+    question:
+      "What is the main advantage of WebSocket over HTTP for real-time applications?",
     options: [
       "WebSocket is more secure",
       "WebSocket maintains a persistent bidirectional connection",
       "WebSocket uses less bandwidth for initial connection",
-      "WebSocket doesn't require a server"
+      "WebSocket doesn't require a server",
     ],
     correctAnswer: 1,
-    explanation: "WebSocket establishes a persistent, full-duplex connection after an initial HTTP handshake. Both client and server can send data at any time without the overhead of repeated HTTP request/response cycles. This makes it ideal for chat, gaming, and live data feeds.",
+    explanation:
+      "WebSocket establishes a persistent, full-duplex connection after an initial HTTP handshake. Both client and server can send data at any time without the overhead of repeated HTTP request/response cycles. This makes it ideal for chat, gaming, and live data feeds.",
     difficulty: "EASY",
     category: "Web Development",
     solveCount: 19300,
@@ -1397,10 +1448,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Logging errors to a file",
       "Storing all state changes as a sequence of immutable events instead of current state",
       "Using addEventListener in JavaScript",
-      "Polling a database for changes"
+      "Polling a database for changes",
     ],
     correctAnswer: 1,
-    explanation: "Event sourcing persists every state change as an immutable event. The current state is derived by replaying events. This provides a complete audit trail, enables time travel debugging, and supports rebuilding state from scratch. Used in banking, e-commerce, and CQRS architectures.",
+    explanation:
+      "Event sourcing persists every state change as an immutable event. The current state is derived by replaying events. This provides a complete audit trail, enables time travel debugging, and supports rebuilding state from scratch. Used in banking, e-commerce, and CQRS architectures.",
     difficulty: "HARD",
     category: "System Design",
     solveCount: 3500,
@@ -1411,15 +1463,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "JavaScript Nullish Coalescing",
     slug: "js-nullish-coalescing",
     question: "What is the difference between ?? and || in JavaScript?",
-    codeSnippet: "const a = 0 ?? 'default';  // ?\nconst b = 0 || 'default';  // ?",
+    codeSnippet:
+      "const a = 0 ?? 'default';  // ?\nconst b = 0 || 'default';  // ?",
     options: [
       "They are identical",
       "?? only falls through on null/undefined; || falls through on any falsy value",
       "|| is newer than ??",
-      "?? works with objects, || works with primitives"
+      "?? works with objects, || works with primitives",
     ],
     correctAnswer: 1,
-    explanation: "?? (nullish coalescing) returns the right side only for null or undefined. || (logical OR) returns the right side for any falsy value (0, '', false, null, undefined, NaN). So 0 ?? 'default' returns 0, but 0 || 'default' returns 'default'.",
+    explanation:
+      "?? (nullish coalescing) returns the right side only for null or undefined. || (logical OR) returns the right side for any falsy value (0, '', false, null, undefined, NaN). So 0 ?? 'default' returns 0, but 0 || 'default' returns 'default'.",
     difficulty: "EASY",
     category: "JavaScript",
     solveCount: 19700,
@@ -1430,15 +1484,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     title: "Python Type Hints",
     slug: "python-type-hints",
     question: "Do Python type hints enforce types at runtime?",
-    codeSnippet: "def greet(name: str) -> str:\n    return f'Hello, {name}'\n\ngreet(42)  # Does this raise an error?",
+    codeSnippet:
+      "def greet(name: str) -> str:\n    return f'Hello, {name}'\n\ngreet(42)  # Does this raise an error?",
     options: [
       "Yes, it throws a TypeError",
       "No, they are only used by type checkers and IDEs — ignored at runtime",
       "Yes, but only in Python 3.10+",
-      "They are enforced only for return types"
+      "They are enforced only for return types",
     ],
     correctAnswer: 1,
-    explanation: "Python type hints are purely informational — they are NOT enforced at runtime. greet(42) runs without error. Type hints are used by static analysis tools like mypy, Pyright, and IDEs for better code intelligence. Use libraries like pydantic or beartype for runtime enforcement.",
+    explanation:
+      "Python type hints are purely informational — they are NOT enforced at runtime. greet(42) runs without error. Type hints are used by static analysis tools like mypy, Pyright, and IDEs for better code intelligence. Use libraries like pydantic or beartype for runtime enforcement.",
     difficulty: "EASY",
     category: "Python",
     solveCount: 18200,
@@ -1448,15 +1504,12 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_80",
     title: "Amortized Analysis",
     slug: "amortized-analysis",
-    question: "What is the amortized time complexity of appending to a dynamic array (like Python list or JavaScript Array)?",
-    options: [
-      "O(n) always",
-      "O(1) amortized",
-      "O(log n)",
-      "O(n²)"
-    ],
+    question:
+      "What is the amortized time complexity of appending to a dynamic array (like Python list or JavaScript Array)?",
+    options: ["O(n) always", "O(1) amortized", "O(log n)", "O(n²)"],
     correctAnswer: 1,
-    explanation: "Most appends are O(1), but occasionally the array must resize (doubling its capacity), which is O(n). However, the resize happens rarely enough that averaged over n operations, each append is O(1) amortized. This is why dynamic arrays are efficient for sequential inserts.",
+    explanation:
+      "Most appends are O(1), but occasionally the array must resize (doubling its capacity), which is O(n). However, the resize happens rarely enough that averaged over n operations, each append is O(1) amortized. This is why dynamic arrays are efficient for sequential inserts.",
     difficulty: "MEDIUM",
     category: "Data Structures",
     solveCount: 8800,
@@ -1471,10 +1524,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "The first GET request to any API",
       "An OPTIONS request the browser sends before certain cross-origin requests to check if they're allowed",
       "A POST request that verifies credentials",
-      "A request that tests network speed"
+      "A request that tests network speed",
     ],
     correctAnswer: 1,
-    explanation: "For cross-origin requests with certain methods (PUT, DELETE) or custom headers, the browser first sends an OPTIONS request (preflight) to ask the server if the actual request is permitted. The server responds with Access-Control-Allow-* headers. Simple GET/POST requests may skip this.",
+    explanation:
+      "For cross-origin requests with certain methods (PUT, DELETE) or custom headers, the browser first sends an OPTIONS request (preflight) to ask the server if the actual request is permitted. The server responds with Access-Control-Allow-* headers. Simple GET/POST requests may skip this.",
     difficulty: "MEDIUM",
     category: "Web Development",
     solveCount: 10800,
@@ -1489,10 +1543,11 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Only reorder commits",
       "Reorder, squash, edit, drop, or rename commits in your branch history",
       "Only delete commits",
-      "Merge remote branches"
+      "Merge remote branches",
     ],
     correctAnswer: 1,
-    explanation: "Interactive rebase opens an editor where you can pick, reorder, squash (combine), fixup, edit (amend), drop (remove), or reword (rename) commits. It's a powerful tool for cleaning up commit history before pushing or creating a pull request.",
+    explanation:
+      "Interactive rebase opens an editor where you can pick, reorder, squash (combine), fixup, edit (amend), drop (remove), or reword (rename) commits. It's a powerful tool for cleaning up commit history before pushing or creating a pull request.",
     difficulty: "MEDIUM",
     category: "Git",
     solveCount: 9600,
@@ -1502,15 +1557,17 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_83",
     title: "Service Workers",
     slug: "service-workers",
-    question: "What is the primary purpose of a Service Worker in web applications?",
+    question:
+      "What is the primary purpose of a Service Worker in web applications?",
     options: [
       "To speed up JavaScript execution",
       "To intercept network requests and enable offline functionality",
       "To render HTML on the server",
-      "To manage database connections"
+      "To manage database connections",
     ],
     correctAnswer: 1,
-    explanation: "Service Workers act as a proxy between the browser and the network. They intercept fetch requests, cache responses, and serve cached content when offline. They also enable push notifications and background sync. They run in a separate thread and have no DOM access.",
+    explanation:
+      "Service Workers act as a proxy between the browser and the network. They intercept fetch requests, cache responses, and serve cached content when offline. They also enable push notifications and background sync. They run in a separate thread and have no DOM access.",
     difficulty: "MEDIUM",
     category: "Web Development",
     solveCount: 9300,
@@ -1520,16 +1577,14 @@ export const SAMPLE_QUESTIONS: Question[] = [
     id: "q_84",
     title: "TypeScript Conditional Types",
     slug: "typescript-conditional-types",
-    question: "What does this TypeScript type resolve to?\n\ntype IsString<T> = T extends string ? 'yes' : 'no';\ntype Result = IsString<number>;",
-    codeSnippet: "type IsString<T> = T extends string ? 'yes' : 'no';\ntype Result = IsString<number>;",
-    options: [
-      "'yes'",
-      "'no'",
-      "boolean",
-      "never"
-    ],
+    question:
+      "What does this TypeScript type resolve to?\n\ntype IsString<T> = T extends string ? 'yes' : 'no';\ntype Result = IsString<number>;",
+    codeSnippet:
+      "type IsString<T> = T extends string ? 'yes' : 'no';\ntype Result = IsString<number>;",
+    options: ["'yes'", "'no'", "boolean", "never"],
     correctAnswer: 1,
-    explanation: "Conditional types use the syntax T extends U ? X : Y. Since number does not extend string, IsString<number> resolves to 'no'. This pattern enables powerful type-level logic for creating flexible, type-safe utility types.",
+    explanation:
+      "Conditional types use the syntax T extends U ? X : Y. Since number does not extend string, IsString<number> resolves to 'no'. This pattern enables powerful type-level logic for creating flexible, type-safe utility types.",
     difficulty: "HARD",
     category: "TypeScript",
     solveCount: 5100,
@@ -1544,13 +1599,298 @@ export const SAMPLE_QUESTIONS: Question[] = [
       "Deploying to two different cloud providers",
       "Running two identical environments and switching traffic from the old (blue) to the new (green)",
       "Deploying only to development and staging",
-      "A color-coded logging system"
+      "A color-coded logging system",
     ],
     correctAnswer: 1,
-    explanation: "Blue-green deployment maintains two identical production environments. New code is deployed to the idle environment (green), tested, then traffic is switched from blue to green. If something goes wrong, you instantly roll back by switching traffic back to blue.",
+    explanation:
+      "Blue-green deployment maintains two identical production environments. New code is deployed to the idle environment (green), tested, then traffic is switched from blue to green. If something goes wrong, you instantly roll back by switching traffic back to blue.",
     difficulty: "MEDIUM",
     category: "DevOps",
     solveCount: 8500,
     attemptCount: 14200,
+  },
+  {
+    id: "q_86",
+    title: "CSS Specificity",
+    slug: "css-specificity",
+    question: "Which CSS selector has the HIGHEST specificity?",
+    options: [
+      "#header .nav a",
+      ".header .nav .link",
+      "header nav a.active",
+      "#header a",
+    ],
+    correctAnswer: 0,
+    explanation:
+      "Specificity is calculated as (IDs, Classes, Elements). '#header .nav a' = (1,1,1). '.header .nav .link' = (0,3,0). 'header nav a.active' = (0,1,3). '#header a' = (1,0,1). The first selector wins with the highest ID count and a class.",
+    difficulty: "EASY",
+    category: "CSS",
+    solveCount: 16700,
+    attemptCount: 22100,
+  },
+  {
+    id: "q_87",
+    title: "Git Rebase vs Merge",
+    slug: "git-rebase-vs-merge",
+    question:
+      "What is the key difference between 'git rebase' and 'git merge'?",
+    options: [
+      "Rebase is faster than merge",
+      "Rebase rewrites commit history, merge creates a merge commit",
+      "Merge can cause conflicts, rebase cannot",
+      "Rebase only works on remote branches",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Git rebase replays commits from one branch on top of another, creating new commits and rewriting history for a linear timeline. Git merge creates a new merge commit that joins two branches, preserving the original history. Both can cause conflicts.",
+    difficulty: "EASY",
+    category: "Git",
+    solveCount: 19500,
+    attemptCount: 25800,
+  },
+  {
+    id: "q_88",
+    title: "Concurrency: Race Condition",
+    slug: "race-condition",
+    question:
+      "Two threads simultaneously execute 'counter++' where counter = 0. The operation involves read, increment, and write steps. What are the possible final values of counter?",
+    options: ["Always 2", "1 or 2", "0, 1, or 2", "Only 1"],
+    correctAnswer: 1,
+    explanation:
+      "If both threads read 0, both increment to 1, and both write 1, the result is 1 (race condition). If the operations are properly sequenced, the result is 2. The value 0 is not possible because at least one write will succeed. So possible values are 1 or 2.",
+    difficulty: "HARD",
+    category: "Concurrency",
+    solveCount: 3800,
+    attemptCount: 10200,
+  },
+  {
+    id: "q_89",
+    title: "Kubernetes Pods",
+    slug: "kubernetes-pods",
+    question:
+      "In Kubernetes, what happens when a container inside a Pod crashes?",
+    options: [
+      "The entire Pod is terminated and never restarted",
+      "The kubelet restarts the container with exponential backoff",
+      "A new Pod is created on a different node",
+      "The cluster shuts down for safety",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "When a container crashes, the kubelet automatically restarts it with an exponential backoff delay (10s, 20s, 40s... up to 5 minutes). This is the default restartPolicy: Always. The Pod itself stays on the same node — only the container is restarted.",
+    difficulty: "HARD",
+    category: "DevOps",
+    solveCount: 4100,
+    attemptCount: 9800,
+  },
+  {
+    id: "q_90",
+    title: "JavaScript Event Loop",
+    slug: "js-event-loop",
+    question:
+      "What is the output order?\n\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
+    codeSnippet:
+      "console.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
+    options: ["1, 2, 3, 4", "1, 4, 2, 3", "1, 4, 3, 2", "1, 3, 4, 2"],
+    correctAnswer: 2,
+    explanation:
+      "Synchronous code runs first: '1' then '4'. Microtasks (Promise.then) have priority over macrotasks (setTimeout). So '3' runs next, then '2'. Output: 1, 4, 3, 2.",
+    difficulty: "MEDIUM",
+    category: "JavaScript",
+    solveCount: 12100,
+    attemptCount: 18900,
+  },
+  {
+    id: "q_91",
+    title: "REST vs GraphQL",
+    slug: "rest-vs-graphql",
+    question: "Which problem does GraphQL solve that REST APIs commonly face?",
+    options: [
+      "GraphQL is faster because it uses WebSockets",
+      "GraphQL eliminates over-fetching and under-fetching of data",
+      "GraphQL doesn't require a server",
+      "GraphQL automatically caches all responses",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "GraphQL lets clients request exactly the data they need in a single query, solving REST's over-fetching (getting unnecessary fields) and under-fetching (needing multiple endpoints). It still uses HTTP, requires a server, and doesn't auto-cache.",
+    difficulty: "EASY",
+    category: "Web Development",
+    solveCount: 17200,
+    attemptCount: 22600,
+  },
+  {
+    id: "q_92",
+    title: "JavaScript Prototypal Inheritance",
+    slug: "js-prototypal-inheritance",
+    question: "What does Object.create(null) return?",
+    options: [
+      "An empty object with Object.prototype",
+      "null",
+      "An object with no prototype chain",
+      "Throws a TypeError",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "Object.create(null) creates a truly empty object with no prototype. It has no inherited methods like toString() or hasOwnProperty(). This is sometimes used for creating clean dictionary-like objects.",
+    difficulty: "MEDIUM",
+    category: "JavaScript",
+    solveCount: 8700,
+    attemptCount: 14200,
+  },
+  {
+    id: "q_93",
+    title: "Python Decorators",
+    slug: "python-decorators",
+    question: "What does the @staticmethod decorator do in Python?",
+    options: [
+      "Makes the method run faster",
+      "Binds the method to the class instance",
+      "Defines a method that doesn't receive self or cls as first argument",
+      "Makes the method private",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "@staticmethod defines a method that belongs to the class namespace but doesn't receive the instance (self) or class (cls) as the first argument. It behaves like a regular function that happens to live inside a class.",
+    difficulty: "EASY",
+    category: "Python",
+    solveCount: 19800,
+    attemptCount: 24100,
+  },
+  {
+    id: "q_94",
+    title: "Hash Table Collision",
+    slug: "hash-table-collision",
+    question:
+      "What is the average time complexity of searching in a hash table with good hash function?",
+    options: ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
+    correctAnswer: 2,
+    explanation:
+      "With a good hash function and proper load factor, hash table lookups average O(1). The hash function maps the key directly to an index. Worst case is O(n) when all keys collide to the same bucket, but this is rare with a good hash function.",
+    difficulty: "EASY",
+    category: "Data Structures",
+    solveCount: 22100,
+    attemptCount: 26500,
+  },
+  {
+    id: "q_95",
+    title: "React Virtual DOM",
+    slug: "react-virtual-dom",
+    question:
+      "Why does React use a Virtual DOM instead of directly manipulating the real DOM?",
+    options: [
+      "The Virtual DOM is stored on the server",
+      "Batching and diffing changes is faster than direct DOM manipulation",
+      "The real DOM doesn't support JavaScript",
+      "The Virtual DOM prevents all re-renders",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "React's Virtual DOM allows it to batch multiple state changes, compute the minimal set of DOM updates via a diffing algorithm, and apply them in one go. Direct DOM manipulation for every change would cause excessive reflows and repaints.",
+    difficulty: "EASY",
+    category: "React",
+    solveCount: 20400,
+    attemptCount: 25700,
+  },
+  {
+    id: "q_96",
+    title: "SQL Indexing",
+    slug: "sql-indexing",
+    question:
+      "What is the primary disadvantage of adding too many indexes to a database table?",
+    options: [
+      "SELECT queries become slower",
+      "The table can no longer store data",
+      "INSERT, UPDATE, and DELETE operations become slower",
+      "Indexes don't work on large tables",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "Each index must be updated whenever data is inserted, updated, or deleted. More indexes means more overhead on write operations. While indexes speed up reads, excessive indexing degrades write performance and increases storage usage.",
+    difficulty: "MEDIUM",
+    category: "Databases",
+    solveCount: 10500,
+    attemptCount: 16200,
+  },
+  {
+    id: "q_97",
+    title: "TypeScript Utility Types",
+    slug: "typescript-utility-types",
+    question: "What does Partial<T> do in TypeScript?",
+    codeSnippet:
+      "interface User {\n  name: string;\n  age: number;\n}\ntype OptionalUser = Partial<User>;",
+    options: [
+      "Makes all properties required",
+      "Makes all properties optional",
+      "Removes all properties",
+      "Makes all properties readonly",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Partial<T> constructs a type with all properties of T set to optional. So Partial<User> becomes { name?: string; age?: number; }. This is useful for update functions where you only want to pass changed fields.",
+    difficulty: "EASY",
+    category: "TypeScript",
+    solveCount: 16300,
+    attemptCount: 20100,
+  },
+  {
+    id: "q_98",
+    title: "CSS Flexbox",
+    slug: "css-flexbox",
+    question:
+      "What does 'justify-content: space-between' do in a flex container?",
+    options: [
+      "Centers all items",
+      "Distributes items with equal space between them, first and last items touch edges",
+      "Adds space before the first item only",
+      "Wraps items to the next line",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "justify-content: space-between distributes flex items so the first item is at the start, the last item is at the end, and remaining items have equal space between them. No space is added before the first or after the last item.",
+    difficulty: "EASY",
+    category: "CSS",
+    solveCount: 23400,
+    attemptCount: 27200,
+  },
+  {
+    id: "q_99",
+    title: "Git Cherry-Pick",
+    slug: "git-cherry-pick",
+    question: "What does 'git cherry-pick <commit>' do?",
+    options: [
+      "Deletes the specified commit",
+      "Applies the changes from a specific commit onto the current branch",
+      "Reverts the specified commit",
+      "Merges two branches together",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "git cherry-pick takes a specific commit from one branch and applies it to your current branch as a new commit. It's useful when you want to bring a specific fix or feature from another branch without merging the entire branch.",
+    difficulty: "MEDIUM",
+    category: "Git",
+    solveCount: 11200,
+    attemptCount: 17800,
+  },
+  {
+    id: "q_100",
+    title: "JavaScript Promises",
+    slug: "js-promises",
+    question: "What does Promise.all() return if one of the promises rejects?",
+    codeSnippet:
+      "Promise.all([\n  Promise.resolve(1),\n  Promise.reject('error'),\n  Promise.resolve(3)\n]);",
+    options: [
+      "[1, 'error', 3]",
+      "[1, undefined, 3]",
+      "Rejects with 'error'",
+      "Resolves with [1, 3]",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "Promise.all() follows a fail-fast behavior. If any promise rejects, the entire Promise.all() immediately rejects with that error, ignoring the results of other promises. Use Promise.allSettled() if you want results from all promises regardless.",
+    difficulty: "MEDIUM",
+    category: "JavaScript",
+    solveCount: 13400,
+    attemptCount: 19600,
   },
 ];
