@@ -67,7 +67,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
   return (
     <div className="h-[calc(100vh-4rem)] flex flex-col">
       {/* Battle Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-arena-card/80 border-b border-arena-border/50">
+      <div className="flex items-center justify-between px-4 py-2 bg-arena-card/60 backdrop-blur-2xl border-b border-white/[0.04]">
         <div className="flex items-center gap-4">
           <button
             onClick={() => router.push("/arena")}
@@ -89,7 +89,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-          <span className="text-arena-neon-pink font-bold text-sm px-3">VS</span>
+          <span className="text-violet-400 font-bold text-sm px-3">VS</span>
 
           {/* Player 2 */}
           {player2 && (
@@ -136,7 +136,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
       </div>
 
       {/* Question Progress Bar */}
-      <div className="flex gap-1.5 px-4 py-2 bg-arena-card/40">
+      <div className="flex gap-1.5 px-4 py-2 bg-arena-card/30">
         {questions.map((_, i) => {
           const result = answerResults[i];
           return (
@@ -145,7 +145,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
               className={cn(
                 "flex-1 h-2 rounded-full transition-all",
                 i === currentQuestionIndex
-                  ? "bg-arena-accent animate-pulse"
+                  ? "bg-violet-500 animate-pulse"
                   : result
                   ? result.isCorrect
                     ? "bg-arena-success"
@@ -219,13 +219,13 @@ export default function BattlePage({ params }: { params: { id: string } }) {
               <div className="flex gap-3">
                 <button
                   onClick={() => router.push("/arena")}
-                  className="flex-1 py-3 bg-gradient-to-r from-arena-accent to-purple-500 rounded-xl font-bold text-white"
+                  className="flex-1 py-3 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl font-bold text-white"
                 >
                   Play Again
                 </button>
                 <button
                   onClick={() => router.push("/")}
-                  className="flex-1 py-3 bg-white/5 rounded-xl font-semibold text-gray-300"
+                  className="flex-1 py-3 bg-white/[0.04] rounded-xl font-semibold text-gray-300"
                 >
                   Home
                 </button>
@@ -238,7 +238,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
       {/* Main Battle Area */}
       <div className="flex-1 flex overflow-hidden">
         {/* Question Panel */}
-        <div className="w-[45%] border-r border-arena-border/50 overflow-y-auto p-8">
+        <div className="w-[45%] border-r border-white/[0.04] overflow-y-auto p-8">
           <motion.div
             key={currentQuestionIndex}
             initial={{ opacity: 0, x: -20 }}
@@ -266,7 +266,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
 
             {/* Code Snippet */}
             {currentQuestion.codeSnippet && (
-              <div className="rounded-xl bg-[#1e1e2e] border border-arena-border/30 p-4 mb-6 font-mono text-sm">
+              <div className="rounded-xl bg-[#0d0d15] border border-white/[0.06] p-4 mb-6 font-mono text-sm">
                 <pre className="text-gray-300 overflow-x-auto">
                   <code>{currentQuestion.codeSnippet}</code>
                 </pre>
@@ -280,7 +280,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="rounded-xl bg-arena-accent/5 border border-arena-accent/20 p-4 mt-4"
+                  className="rounded-xl bg-violet-500/5 border border-violet-500/15 p-4 mt-4"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Lightbulb className="w-4 h-4 text-arena-neon-yellow" />
@@ -329,12 +329,12 @@ export default function BattlePage({ params }: { params: { id: string } }) {
                       !isAnswerLocked && isSelected
                         ? "border-arena-accent bg-arena-accent/10"
                         : !isAnswerLocked && !isSelected
-                        ? "border-arena-border/30 bg-white/[0.02] hover:border-arena-accent/40 hover:bg-white/[0.04]"
+                        ? "border-white/[0.06] bg-white/[0.02] hover:border-violet-500/30 hover:bg-white/[0.04]"
                         : showCorrect
                         ? "border-arena-success bg-arena-success/10"
                         : showWrong
                         ? "border-arena-danger bg-arena-danger/10"
-                        : "border-arena-border/20 bg-white/[0.01] opacity-50"
+                        : "border-white/[0.03] bg-white/[0.01] opacity-50"
                     )}
                   >
                     <div
@@ -380,7 +380,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
           </motion.div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-between mt-6 pt-6 border-t border-arena-border/30">
+          <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/[0.04]">
             {/* Score */}
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1.5 text-sm">
@@ -399,7 +399,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
               <button
                 onClick={submitAnswer}
                 disabled={selectedAnswer === null}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-arena-accent to-purple-500 rounded-xl font-bold text-white hover:shadow-[0_0_20px_rgba(108,92,231,0.3)] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl font-bold text-white hover:shadow-[0_0_20px_rgba(124,58,237,0.25)] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4" />
                 Lock Answer
@@ -407,7 +407,7 @@ export default function BattlePage({ params }: { params: { id: string } }) {
             ) : !isLastQuestion ? (
               <button
                 onClick={nextQuestion}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-arena-neon to-teal-500 rounded-xl font-bold text-white hover:shadow-[0_0_20px_rgba(0,245,212,0.3)] transition-all"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl font-bold text-white hover:shadow-[0_0_20px_rgba(6,214,160,0.25)] transition-all"
               >
                 Next Question
                 <ArrowRight className="w-4 h-4" />

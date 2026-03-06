@@ -3,9 +3,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "CodeArena - Competitive Coding Battles",
+  title: "CodeArena — Battle. Code. Win.",
   description:
-    "Real-time competitive coding battles. Challenge opponents, climb the leaderboard, and prove your skills in the ultimate coding arena.",
+    "Real-time competitive quiz battles. Challenge developers, climb the leaderboard, and prove your skills.",
 };
 
 export default function RootLayout({
